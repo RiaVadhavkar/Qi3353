@@ -6,6 +6,15 @@
     app:startDestination="@id/signUpFragment">
 
     <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.example.qi3353.LoadingFragment"
+        android:label="fragment_loading"
+        tools:layout="@layout/fragment_loading">
+        <action
+            android:id="@+id/action_signUpFragment_to_registrationFragment"
+            app:destination="@id/forYouFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.qi3353.SignUpFragment"
         android:label="fragment_sign_up"
@@ -13,6 +22,9 @@
         <action
             android:id="@+id/action_signUpFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/loadingFragment"
+            app:destination="@id/loadingFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
