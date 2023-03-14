@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".NotificationFragment">
 
 
     <View
+        android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:layout_marginBottom="16dp"
@@ -86,10 +87,13 @@
         android:id="@+id/spinner1"
         android:layout_width="357dp"
         android:layout_height="53dp"
+        android:layout_marginBottom="376dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="230dp" />
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
