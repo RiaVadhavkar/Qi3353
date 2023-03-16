@@ -1,0 +1,90 @@
+{
+  "events": [
+    {
+      "eventId": 1001,
+      "organization": "Chess Club",
+      "name": "Chess Competition",
+      "description": "The Chess Club is hosting their very first chess competition of the year! Come show your skills and win some prizes.",
+      "restrictions": "Freshmen, sophomores, juniors, seniors",
+      "start_time": "2023-03-01 16:00",
+      "end_time": "2023-03-01 17:00",
+      "location": "Squires Student Center 100",
+      "calendar_link": "https://google-vt-chess-calendar.com",
+      "tags": ["Chess", "Academic"],
+      "passed": true,
+      "photo": "chess-club-icon.jpeg",
+      "original_link": "https://vt-chess-club"
+
+    },
+
+    {
+      "eventId": 1002,
+      "organization": "Association for Computing",
+      "name": "Java workshop",
+      "description": "Students who are currently undecided in their majors should give coding a try!",
+      "restrictions": "Freshmen, sophomores",
+      "start_time": "2023-04-28 17:00",
+      "end_time": "2023-04-28 18:00",
+      "location": "McBryde 100",
+      "calendar_link": "https://google-vt-awc-calendar.com",
+      "tags": ["Gender","Academic", "Diversity"],
+      "passed": false,
+      "photo": "awc-conference-image.jpeg",
+      "original_link": "https://vt-awc.org"
+
+    },
+
+    {
+      "eventId": 1003,
+      "organization": "InclusiveVT",
+      "name": "Diversity at Virginia Tech",
+      "description": "Come engage in our discussion on how to promote diversity at Virginia Tech.",
+      "restrictions": "",
+      "start_time": "2023-01-01 8:00",
+      "end_time": "2023-01-01 9:30",
+      "location": "McCommas",
+      "calendar_link": "",
+      "tags": ["Diversity", "International", "Community", "Ut Prosim"],
+      "passed": true,
+      "photo": "diversity-and-inclusivity.png",
+      "original_link": "https://office-of-diversity-inclusion-vt.com"
+
+    },
+
+    {
+      "eventId": 1004,
+      "organization": "IEEE Virginia Tech Chapter",
+      "name": "General body meeting",
+      "description": "Keynote speaker Dr. Smith will be presenting on what it's like working for Meta",
+      "restrictions": "graduate, phd",
+      "time": "2023-05-03 14:00",
+      "location": "Whittemore 130",
+      "calendar_link": "https://google-ieee-vt-chapter-calendar.com",
+      "tags": ["Academic", "Graduate Students"],
+      "passed": true,
+      "photo": "",
+      "original_link": "https://google-ieee-vt-chapter.com"
+
+    },
+
+    {
+      "eventId": 1005,
+      "organization": "VT Weightlifting",
+      "name": "Monday workout",
+      "description": "deadlifting- spotters needed",
+      "restrictions": "None",
+      "time": "2023-05-03 14:00",
+      "location": "Whittemore 130",
+      "calendar_link": "https://google-ieee-vt-chapter-calendar.com",
+      "tags": ["Academic", "Graduate Students"],
+      "passed": true,
+      "photo": "",
+      "original_link": "https://google-ieee-vt-chapter.com"
+
+    }
+
+
+
+  ]
+
+}
