@@ -99,17 +99,17 @@ class ForYouFragment : Fragment() {
 
         //Log.d("test", ""+outputJsonString)
 
-        /*
+
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        viewAdapter = RecyclerViewAdapter(10, classes)
+        viewAdapter = RecyclerViewAdapter(10, eventList)
         recyclerView.adapter = viewAdapter
-    */
+
 
         return view
     }
 
-    /*
+
     inner class RecyclerViewAdapter(private var cnt: Int, private var events: MutableList<Event> ) :
         RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
@@ -123,12 +123,12 @@ class ForYouFragment : Fragment() {
         }
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name
-            holder.view.findViewById<TextView>(R.id.imageView).text = ""
-            holder.view.findViewById<TextView>(R.id.date).text = ""
-            holder.view.findViewById<TextView>(R.id.time).text = ""
-            holder.view.findViewById<TextView>(R.id.location).text = ""
+            //holder.view.findViewById<TextView>(R.id.imageView).text = events[position].photo
+            //holder.view.findViewById<TextView>(R.id.date).text =
+            holder.view.findViewById<TextView>(R.id.time).text = events[position].start_time + " - " + events[position].end_time
+            holder.view.findViewById<TextView>(R.id.location).text = events[position].location
         }
-
+    /*
         fun filterClasses(markerChoice: String, timeStart: String, timeEnd: String, date: String, part: String) {
 
             classes = classes.filter{ m -> m.building.equals(markerChoice, ignoreCase = true)}.toMutableList()
@@ -148,23 +148,28 @@ class ForYouFragment : Fragment() {
             notifyDataSetChanged()
 
         }
+     */
 
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = cnt
 
         inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view){
-            var participantsText: TextView
-            var availabilityText: TextView
+            var eventName: TextView
+            //var imageView: TextView
             var timeText: TextView
+            //var date: TextView
+            var location: TextView
 
             init {
-                participantsText = view.findViewById(R.id.participants)
-                availabilityText = view.findViewById(R.id.availability)
+                eventName = view.findViewById(R.id.eventName)
+                //timeText = view.findViewById(R.id.imageView)
                 timeText = view.findViewById(R.id.time)
+                //date = view.findViewById(R.id.date)
+                location = view.findViewById(R.id.location)
             }
         }
     }
 
-     */
+
 
 }
