@@ -23,6 +23,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SignInFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -39,7 +41,8 @@ class SignInFragment : Fragment() {
     ): View? {
         view = inflater.inflate(R.layout.fragment_sign_in, container, false)
         var signInButton = view.findViewById(R.id.signInWithGoogle) as Button
-        auth = FirebaseAuth.getInstance()
+
+        auth = Firebase.auth
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build()
 
@@ -48,8 +51,6 @@ class SignInFragment : Fragment() {
         signInButton.setOnClickListener{
             signInGoogle()
         }
-
-
 
         return view
     }
