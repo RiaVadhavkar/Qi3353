@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.qi3353.SignUpFragment"
+        android:name="com.example.qi3353.SignInFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signUpFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />

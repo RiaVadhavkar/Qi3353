@@ -2,4 +2,6 @@
     <string name="app_name">Qi3353</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">137645285477-62qfes9rqgu97ah3iq689nf8ak8sup9e.apps.googleusercontent.com</string>
+
 </resources>
