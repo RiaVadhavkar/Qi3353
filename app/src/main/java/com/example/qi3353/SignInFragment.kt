@@ -9,12 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.registerForActivityResult
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.example.qi3353.databinding.FragmentNotificationBinding
 import com.example.qi3353.databinding.FragmentSignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -31,6 +29,8 @@ class SignInFragment : Fragment() {
     private lateinit var view: View
     private lateinit var googleSignInClient: GoogleSignInClient
 
+    private lateinit var binding: FragmentSignInBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -39,8 +39,10 @@ class SignInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        view = inflater.inflate(R.layout.fragment_sign_in, container, false)
-        var signInButton = view.findViewById(R.id.signInWithGoogle) as Button
+        binding = FragmentSignInBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        var signInButton = binding.signInWithGoogle
 
         auth = Firebase.auth
 
@@ -50,6 +52,11 @@ class SignInFragment : Fragment() {
 
         signInButton.setOnClickListener{
             signInGoogle()
+        }
+
+        // place holder for now (need to change later on)
+        binding.continueAsGuest.setOnClickListener{
+            view.findNavController().navigate(R.id.action_signInFragment_to_registrationFragment)
         }
 
         return view
@@ -96,7 +103,7 @@ class SignInFragment : Fragment() {
                 intent.putExtra("email", account.email)
                 intent.putExtra("displayName", account.displayName)
                 startActivity(intent)
-                view.findNavController().navigate(R.id.action_signUpFragment_to_registrationFragment)
+                view.findNavController().navigate(R.id.action_signInFragment_to_registrationFragment)
             }else{
                 Toast.makeText(activity, it.exception.toString(), Toast.LENGTH_SHORT).show()
             }
