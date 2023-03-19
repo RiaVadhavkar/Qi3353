@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONArray
@@ -15,18 +16,10 @@ import org.json.JSONObject
 import org.json.JSONTokener
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.qi3353.databinding.FragmentForYouBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ForYouFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ForYouFragment : Fragment() {
+    private lateinit var binding: FragmentForYouBinding
 
     private lateinit var recyclerView: RecyclerView
     lateinit var viewAdapter: RecyclerView.Adapter<*>
@@ -37,8 +30,17 @@ class ForYouFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Sets up binding.
+        binding = FragmentForYouBinding.inflate(inflater, container, false)
+        var view = binding.root
 
-        var view = inflater.inflate(R.layout.fragment_for_you, container, false)
+        // Bottom navigation buttons.
+        binding.searchBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_forYouFragment_to_searchFragment)
+        }
+        binding.profileBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_forYouFragment_to_profileFragment)
+        }
 
 
 

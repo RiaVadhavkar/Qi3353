@@ -15,7 +15,6 @@ import com.example.qi3353.databinding.TagPreferencesItemBinding
 
 class PreferencesFragment : Fragment() {
     private lateinit var binding: FragmentPreferencesBinding
-    private val viewModel: Model by activityViewModels()
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +26,13 @@ class PreferencesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Sets up binding.
-        binding = FragmentPreferencesBinding.inflate(inflater, container,false)
+        binding = FragmentPreferencesBinding.inflate(inflater, container, false)
         val view = binding.root
 
         // Sets up recycler view.
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = GridLayoutManager(context, 2)
-        viewModel.getTags().observe(viewLifecycleOwner) {
-            recyclerView.adapter = PreferencesRVA(it, activity as MainActivity)
-        }
+        recyclerView.adapter = PreferencesRVA(activity as MainActivity)
 
         binding.continueBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_preferencesFragment_to_forYouFragment)
@@ -43,26 +40,36 @@ class PreferencesFragment : Fragment() {
 
         return view
     }
-}
 
-class PreferencesRVA(private val tags: List<String>, private val activity: MainActivity) :
-    RecyclerView.Adapter<PreferencesRVA.ViewHolder>() {
-    private lateinit var binding: TagPreferencesItemBinding
+    inner class PreferencesRVA(private val activity: MainActivity) :
+        RecyclerView.Adapter<PreferencesRVA.ViewHolder>() {
+        private lateinit var binding: TagPreferencesItemBinding
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PreferencesRVA.ViewHolder {
-        binding = TagPreferencesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        val view = binding.root
-        return ViewHolder(view, binding, activity)
-    }
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): PreferencesRVA.ViewHolder {
+            binding = TagPreferencesItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+            val view = binding.root
+            return ViewHolder(view, binding, activity)
+        }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(tags[position])
-    }
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            holder.bindItems(Tags.values()[position].toString())
+        }
 
-    override fun getItemCount() = tags.size
+        override fun getItemCount() = Tags.values().size
 
-    class ViewHolder(private val view: View, private val binding: TagPreferencesItemBinding, private val activity: MainActivity) :
-        RecyclerView.ViewHolder(view) {
+        inner class ViewHolder(
+            private val view: View,
+            private val binding: TagPreferencesItemBinding,
+            private val activity: MainActivity
+        ) :
+            RecyclerView.ViewHolder(view) {
             fun bindItems(tag: String) {
                 var clicked = false
 
@@ -77,5 +84,6 @@ class PreferencesRVA(private val tags: List<String>, private val activity: MainA
                     }
                 }
             }
+        }
     }
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentNotificationBinding
 
 class NotificationFragment : Fragment() {
@@ -21,17 +22,28 @@ class NotificationFragment : Fragment() {
         binding = FragmentNotificationBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.switch1.setOnClickListener(View.OnClickListener {
-            binding.switch1.text = "Push Notifications"+ binding.switch1.isChecked
-    })
+        // Bottom navigation buttons.
+        binding.homeBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_notificationFragment_to_forYouFragment)
+        }
+        binding.searchBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_notificationFragment_to_searchFragment)
+        }
+        binding.profileBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_notificationFragment_to_profileFragment)
+        }
 
-        view.addView(binding.switch1)
-
-        binding.switch2.setOnClickListener(View.OnClickListener {
-            binding.switch2.text = "Set Reminders"+ binding.switch2.isChecked
-        })
-
-        view.addView(binding.switch2)
+//        binding.switch1.setOnClickListener(View.OnClickListener {
+//            binding.switch1.text = "Push Notifications"+ binding.switch1.isChecked
+//    })
+//
+//        view.addView(binding.switch1)
+//
+//        binding.switch2.setOnClickListener(View.OnClickListener {
+//            binding.switch2.text = "Set Reminders"+ binding.switch2.isChecked
+//        })
+//
+//        view.addView(binding.switch2)
 
 
         return view
