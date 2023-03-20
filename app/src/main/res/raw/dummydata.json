@@ -5,176 +5,213 @@
       "organization": "Chess Club",
       "name": "Chess Competition",
       "description": "The Chess Club is hosting their very first chess competition of the year! Come show your skills and win some prizes.",
-      "restrictions": ["Freshmen", "Sophomores", "Juniors", "Seniors"],
-      "start_time": "2023-03-01 16:00",
-      "end_time": "2023-03-01 17:00",
-      "location": "Squires Student Center 100",
+      "restrictions": [
+        "Freshmen",
+        "Sophomores",
+        "Juniors",
+        "Seniors"
+      ],
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "location": "Squires 100",
       "calendar_link": "https://google-vt-chess-calendar.com",
-      "tags": ["Chess", "Academic"],
+      "tags": [
+        "Chess",
+        "Academic"
+      ],
       "passed": true,
-      "photo": "chess-club-icon.jpeg",
-      "original_link": "https://vt-chess-club"
-
+      "photo": "chess-club",
+      "original_link": "https://lichess.org/team/vt-chess-club"
     },
-
     {
       "eventId": 1002,
-      "organization": "Association for Computing",
-      "name": "Java workshop",
+      "organization": "Association for Women in Computing",
+      "name": "Java Workshop",
       "description": "Students who are currently undecided in their majors should give coding a try!",
-      "restrictions": ["Freshmen", "Sophomores"],
-      "start_time": "2023-04-28 17:00",
-      "end_time": "2023-04-28 18:00",
-      "location": "McBryde 100",
+      "restrictions": [
+        "Freshmen",
+        "Sophomores"
+      ],
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "location": "McB 100",
       "calendar_link": "https://google-vt-awc-calendar.com",
-      "tags": ["Gender","Academic", "Diversity"],
+      "tags": [
+        "Gender",
+        "Academic",
+        "Diversity"
+      ],
       "passed": false,
-      "photo": "awc-conference-image.jpeg",
-      "original_link": "https://vt-awc.org"
-
+      "photo": "awc",
+      "original_link": "https://sites.google.com/vt.edu/awc"
     },
-
     {
       "eventId": 1003,
       "organization": "InclusiveVT",
       "name": "Diversity at Virginia Tech",
       "description": "Come engage in our discussion on how to promote diversity at Virginia Tech.",
-      "restrictions": [""],
-      "start_time": "2023-05-03 8:00",
-      "end_time": "2023-05-03 9:30",
-      "location": "Burrus Hall 200",
+      "restrictions": [
+        ""
+      ],
+      "start_time": "8:00",
+      "end_time": "9:30",
+      "location": "Burrus 200",
       "calendar_link": "",
-      "tags": ["Diversity", "International", "Community", "Ut Prosim"],
+      "tags": [
+        "Diversity",
+        "International",
+        "Community",
+        "Ut Prosim"
+      ],
       "passed": false,
-      "photo": "diversity-and-inclusivity.png",
-      "original_link": "https://office-of-diversity-inclusion-vt.com"
-
+      "photo": "inclusiveVT",
+      "original_link": "https://www.inclusive.vt.edu/"
     },
-
     {
       "eventId": 1004,
       "organization": "IEEE Virginia Tech Chapter",
-      "name": "General body meeting",
-      "description": "Keynote speaker Dr. Smith will be presenting on what it's like working for Meta",
-      "restrictions": ["Graduate", "PhD"],
-      "start_time": "2023-05-03 14:00",
-      "end_time": "2023-05-03 14:30",
+      "name": "General Body Meeting",
+      "description": "Keynote speaker Dr. Smith will be presenting on what it's like working for Meta.",
+      "restrictions": [
+        "Graduate",
+        "PhD"
+      ],
+      "start_time": "14:00",
+      "end_time": "14:30",
       "location": "Whittemore 130",
       "calendar_link": "https://google-ieee-vt-chapter-calendar.com",
-      "tags": ["Academic", "Graduate Students"],
+      "tags": [
+        "Academic",
+        "Graduate Students"
+      ],
       "passed": false,
-      "photo": "",
-      "original_link": "https://google-ieee-vt-chapter.com"
-
+      "photo": "ieee",
+      "original_link": "https://www.ieee.vt.edu/"
     },
-
     {
       "eventId": 1005,
       "organization": "VT Weightlifting",
-      "name": "Monday workout",
+      "name": "Monday Workout",
       "description": "deadlifting (spotters needed)",
-      "restrictions": [""],
-      "start_time": "2023-01-01 8:00",
-      "end_time": "2023-01-01 11:00",
+      "restrictions": [
+        ""
+      ],
+      "start_time": "8:00",
+      "end_time": "11:00",
       "location": "McComas Gym",
       "calendar_link": "",
-      "tags": ["Fitness", "Sports", "Health"],
+      "tags": [
+        "Fitness",
+        "Sports",
+        "Health"
+      ],
       "passed": true,
-      "photo": "",
+      "photo": "no-image",
       "original_link": ""
-
     },
-
     {
       "eventId": 2006,
       "organization": "Ballroom Dance",
-      "name": "salsa night",
-      "description": "salsa night",
-      "restrictions": ["Blacksburg residents"],
-      "start_time": "2023-04-01 17:00",
-      "end_time": "2023-04-02 22:00",
+      "name": "Salsa Night",
+      "description": "Join us for Salsa Night in the Ballroom at 5pm!",
+      "restrictions": [
+        "Blacksburg Residents"
+      ],
+      "start_time": "17:00",
+      "end_time": "22:00",
       "location": "Squires Ballroom",
       "calendar_link": "http://salsa-at-vt-calendar.com",
-      "tags": ["International", "Dance"],
+      "tags": [
+        "International",
+        "Dance"
+      ],
       "passed": false,
-      "photo": "salsa-dancers.png",
-      "original_link": "http://vtsalsa.org"
-
+      "photo": "salsa-dancers",
+      "original_link": "https://gobblerconnect.vt.edu/organization/SalsaTech"
     },
-
     {
       "eventId": 1009,
-      "organization": "Alpha Sigma Omega",
-      "name": "Ice cream social",
+      "organization": "Alpha Chi Omega",
+      "name": "Ice Cream Social",
       "description": "PNMs should come meet our sisters!!!",
-      "restrictions": ["Freshmen", "Sophomores", "Juniors", "Seniors"],
-      "start_time": "2023-02-14 20:00",
-      "end_time": "2023-02-02 22:00",
+      "restrictions": [
+        "Freshmen",
+        "Sophomores",
+        "Juniors",
+        "Seniors"
+      ],
+      "start_time": "20:00",
+      "end_time": "22:00",
       "location": "325 Oak Lane Blacksburg, VA",
-      "calendar_link": "https://aso-national-chapter-calendar.org",
-      "tags": ["Gender", "Social"],
+      "calendar_link": "https://aco-national-chapter-calendar.org",
+      "tags": [
+        "Gender",
+        "Social"
+      ],
       "passed": true,
-      "photo": "2021-ice-cream-social.png",
-      "original_link": "https://aso-national-chapter.org"
-
+      "photo": "aco",
+      "original_link": "https://www.alphachiomega.org/"
     },
-
     {
       "eventId": 1010,
       "organization": "Anime and Gaming Club",
-      "name": "Minecraft speed run",
-      "description": "Trying to beat our record time of 1:01:23",
-      "restrictions": ["Members of the Blacksburg community"],
-      "start_time": "2023-04-20 20:00",
-      "end_time": "2023-04-20 21:00",
-      "location": "Torg lounge",
+      "name": "Minecraft Speed Run",
+      "description": "Trying to beat our record time of 1:01:23!",
+      "restrictions": [
+        "Blacksburg Residents"
+      ],
+      "start_time": "20:00",
+      "end_time": "21:00",
+      "location": "Torg 1070",
       "calendar_link": "",
-      "tags": ["Gaming"],
+      "tags": [
+        "Gaming"
+      ],
       "passed": false,
-      "photo": "",
-      "original_link": ""
-
+      "photo": "agc",
+      "original_link": "https://gobblerconnect.vt.edu/organization/anime-gaming"
     },
-
     {
       "eventId": 1011,
-      "organization": "American Multi-Cultural club",
-      "name": "cultural dinner",
-      "description": "Join us for dinner",
-      "restrictions": ["Members of the Blacksburg community"],
-      "start_time": "2023-05-01 17:00",
-      "end_time": "2023-05-01 18:00",
+      "organization": "American Multi-Cultural Club",
+      "name": "Cultural Dinner",
+      "description": "Join us for a potluck dinner from several different cuisines!",
+      "restrictions": [
+        "Blacksburg Residents"
+      ],
+      "start_time": "17:00",
+      "end_time": "18:00",
       "location": "Owens Ballroom",
-      "calendar_link": "www.vt-amc-calendar.org",
-      "tags": ["Community","Cultural", "Diversity", "Food Dining"],
+      "calendar_link": "http://amc-vt-calendar.com",
+      "tags": [
+        "Community",
+        "Cultural",
+        "Diversity",
+        "Food Dining"
+      ],
       "passed": false,
-      "photo": "thai-food.png",
-      "original_link": "www.vt-amc.org"
-
+      "photo": "amc",
+      "original_link": "https://gobblerconnect.vt.edu/organization/amc-vt"
     },
-
     {
       "eventId": 1961,
       "organization": "Art Club",
-      "name": "life-drawign event",
-      "description": "arts/crafts/drawing/painting- bring your own supplies or $10 to purchase them",
-      "restrictions": [""],
-      "start_time": "2022-10-13 18:00",
-      "end_time": "2022-10-13 20:00",
-      "location": "Holden Hall 200",
-      "calendar_link": "www.vt-art-club-google-calendar.org",
-      "tags": ["Art", "Social"],
+      "name": "Life Drawing Event",
+      "description": "arts/crafts/drawing/painting - bring your own supplies or bring $10 to purchase them!",
+      "restrictions": [
+        ""
+      ],
+      "start_time": "18:00",
+      "end_time": "20:00",
+      "location": "Holden 200",
+      "calendar_link": "http://art-vt-calendar.com",
+      "tags": [
+        "Art",
+        "Social"
+      ],
       "passed": true,
-      "photo": "paintbrush.jpg",
-      "original_link": "www.vt-art.org"
-
+      "photo": "artclub",
+      "original_link": "https://gobblerconnect.vt.edu/organization/artclubatvt"
     }
-
-
-
-
-
-
   ]
-
 }
