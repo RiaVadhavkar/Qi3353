@@ -54,9 +54,14 @@ class SignInFragment : Fragment() {
             signInGoogle()
         }
 
+        // TEMPORARY!
+        binding.signInWithGoogle.setOnClickListener{
+            view.findNavController().navigate(R.id.action_signInFragment_to_preferencesFragment)
+        }
+
         // place holder for now (need to change later on)
         binding.continueAsGuest.setOnClickListener{
-            view.findNavController().navigate(R.id.action_signInFragment_to_registrationFragment)
+            view.findNavController().navigate(R.id.action_signInFragment_to_forYouFragment)
         }
 
         return view

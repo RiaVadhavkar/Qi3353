@@ -20,32 +20,20 @@
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_in" >
         <action
-            android:id="@+id/action_signInFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
-        <action
             android:id="@+id/loadingFragment"
             app:destination="@id/loadingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registrationFragment"
-        android:name="com.example.qi3353.RegistrationFragment"
-        android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
         <action
-            android:id="@+id/action_registrationFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-        <action
-            android:id="@+id/action_registrationFragment_to_preferencesFragment"
+            android:id="@+id/action_signInFragment_to_preferencesFragment"
             app:destination="@id/preferencesFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_forYouFragment"
+            app:destination="@id/forYouFragment" />
     </fragment>
     <fragment
         android:id="@+id/preferencesFragment"
         android:name="com.example.qi3353.PreferencesFragment"
         android:label="fragment_preferences"
         tools:layout="@layout/fragment_preferences" >
-        <action
-            android:id="@+id/action_preferencesFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
         <action
             android:id="@+id/action_preferencesFragment_to_forYouFragment"
             app:destination="@id/forYouFragment" />
