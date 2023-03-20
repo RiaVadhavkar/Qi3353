@@ -2,21 +2,18 @@ package com.example.qi3353
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.qi3353.databinding.FragmentForYouBinding
 import org.json.JSONArray
 import org.json.JSONObject
-import org.json.JSONTokener
-import java.text.SimpleDateFormat
-import java.util.*
-import com.example.qi3353.databinding.FragmentForYouBinding
 
 class ForYouFragment : Fragment() {
     private lateinit var binding: FragmentForYouBinding
@@ -125,10 +122,12 @@ class ForYouFragment : Fragment() {
         }
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name
-            //holder.view.findViewById<TextView>(R.id.imageView).text = events[position].photo
             //holder.view.findViewById<TextView>(R.id.date).text =
             holder.view.findViewById<TextView>(R.id.time).text = events[position].start_time + " - " + events[position].end_time
             holder.view.findViewById<TextView>(R.id.location).text = events[position].location
+            var stringGenerated = events[position].photo
+            val imgId = context!!.resources.getIdentifier("$stringGenerated", "drawable", context!!.packageName)
+            holder.view.findViewById<ImageView>(R.id.imageView).setImageResource(imgId) //= events[position].photo
         }
     /*
         fun filterClasses(markerChoice: String, timeStart: String, timeEnd: String, date: String, part: String) {
@@ -157,14 +156,14 @@ class ForYouFragment : Fragment() {
 
         inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view){
             var eventName: TextView
-            //var imageView: TextView
+            var imageView: ImageView
             var timeText: TextView
             //var date: TextView
             var location: TextView
 
             init {
                 eventName = view.findViewById(R.id.eventName)
-                //timeText = view.findViewById(R.id.imageView)
+                imageView = view.findViewById(R.id.imageView)
                 timeText = view.findViewById(R.id.time)
                 //date = view.findViewById(R.id.date)
                 location = view.findViewById(R.id.location)
