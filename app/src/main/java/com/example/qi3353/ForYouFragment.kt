@@ -121,8 +121,15 @@ class ForYouFragment : Fragment() {
             return ViewHolder(v)
         }
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+           /* if (events[position].name.length > 20) {
+                holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name.substring(0,17) + "..."
+            }
+            else {
+            }
+            */
             holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name
-            //holder.view.findViewById<TextView>(R.id.date).text =
+
+            //holder.view.findViewById<TextView>(R.id.date).text = events[position].date
             holder.view.findViewById<TextView>(R.id.time).text = events[position].start_time + " - " + events[position].end_time
             holder.view.findViewById<TextView>(R.id.location).text = events[position].location
             var stringGenerated = events[position].photo
