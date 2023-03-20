@@ -60,7 +60,8 @@ class ForYouFragment : Fragment() {
                     events.getJSONObject(i).get("start_time").toString(),
                     events.getJSONObject(i).get("end_time").toString(),
                     events.getJSONObject(i).get("location").toString(),
-                    events.getJSONObject(i).get("photo").toString()
+                    events.getJSONObject(i).get("photo").toString(),
+                    events.getJSONObject(i).get("date").toString()
                 )
             )
 
@@ -79,6 +80,7 @@ class ForYouFragment : Fragment() {
             //val passed = events.getJSONObject(i).get("passed")
             val photo = events.getJSONObject(i).get("photo")
             //val original_link = events.getJSONObject(i).get("original_link")
+            val date = events.getJSONObject(i).get("date")
 /*
             Log.d("test", eventId.toString())
             Log.d("test", organization.toString())
@@ -129,12 +131,22 @@ class ForYouFragment : Fragment() {
             */
             holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name
 
-            //holder.view.findViewById<TextView>(R.id.date).text = events[position].date
+            holder.view.findViewById<TextView>(R.id.date).text = events[position].date
             holder.view.findViewById<TextView>(R.id.time).text = events[position].start_time + " - " + events[position].end_time
             holder.view.findViewById<TextView>(R.id.location).text = events[position].location
+            if (events[position].location.length > 20) {
+                holder.view.findViewById<TextView>(R.id.location).text = events[position].location.substring(0,17) + "..."
+            }
+            else {
+                holder.view.findViewById<TextView>(R.id.location).text = events[position].location
+            }
+
             var stringGenerated = events[position].photo
             val imgId = context!!.resources.getIdentifier("$stringGenerated", "drawable", context!!.packageName)
             holder.view.findViewById<ImageView>(R.id.imageView).setImageResource(imgId) //= events[position].photo
+
+            //val calendar = context!!.resources.getIdentifier("calendar", "drawable", context!!.packageName)
+            //holder.view.findViewById<ImageView>(R.id.calendarButton).setImageResource(calendar) //= events[position].photo
         }
     /*
         fun filterClasses(markerChoice: String, timeStart: String, timeEnd: String, date: String, part: String) {
@@ -165,15 +177,17 @@ class ForYouFragment : Fragment() {
             var eventName: TextView
             var imageView: ImageView
             var timeText: TextView
-            //var date: TextView
+            var date: TextView
             var location: TextView
+            //var calendar: ImageView
 
             init {
                 eventName = view.findViewById(R.id.eventName)
                 imageView = view.findViewById(R.id.imageView)
                 timeText = view.findViewById(R.id.time)
-                //date = view.findViewById(R.id.date)
+                date = view.findViewById(R.id.date)
                 location = view.findViewById(R.id.location)
+                //calendar = view.findViewById(R.id.calendarButton)
             }
         }
     }

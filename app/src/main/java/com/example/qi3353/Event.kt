@@ -14,4 +14,5 @@ data class Event(
     //var passed: Boolean,
     var photo: String,
     //var original_link: String
+    var date: String
     )
