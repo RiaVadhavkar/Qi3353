@@ -22,12 +22,12 @@
         android:id="@+id/homeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="70dp"
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/font_awesome"
         android:text="\uf015"
         android:textColor="#000000"
-        android:textSize="40sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -39,7 +39,7 @@
         android:fontFamily="@font/font_awesome"
         android:text="\uf002"
         android:textColor="#000000"
-        android:textSize="40sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profileBtn"
         app:layout_constraintStart_toEndOf="@+id/homeBtn" />
@@ -48,12 +48,12 @@
         android:id="@+id/profileBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="70dp"
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/font_awesome"
         android:text="\uf007"
         android:textColor="#000000"
-        android:textSize="40sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
