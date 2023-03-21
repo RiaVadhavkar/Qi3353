@@ -13,7 +13,7 @@
         android:text="Profile"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/preferencesBtn"
+        app:layout_constraintBottom_toTopOf="@id/preferencesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
