@@ -36,9 +36,9 @@
             android:id="@+id/eventName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="@font/inter_extrabold"
             android:gravity="center"
             android:text="Event Name"
             android:textAlignment="center"
@@ -64,9 +64,8 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="Wed, Mar 01 2023"
             android:textAlignment="center"
@@ -78,9 +77,8 @@
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="XX:XX AM/PM - XX:XX AM/PM"
             android:textAlignment="center"
@@ -92,10 +90,9 @@
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="MCB 110"
             android:textAlignment="center"
@@ -104,14 +101,17 @@
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/time" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="fitCenter"
+        <TextView
+            android:id="@+id/calendarButton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:fontFamily="@font/font_awesome"
+            android:gravity="center"
+            android:text="\uf271"
+            android:textColor="@color/black"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/calendar" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

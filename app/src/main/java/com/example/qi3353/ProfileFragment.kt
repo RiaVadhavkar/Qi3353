@@ -30,6 +30,10 @@ class ProfileFragment : Fragment() {
             view.findNavController().navigate(R.id.action_profileFragment_to_searchFragment)
         }
 
+        binding.preferencesButton.setOnClickListener {
+            view.findNavController().navigate(R.id.action_profileFragment_to_preferencesFragment)
+        }
+
         binding.notificationBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_profileFragment_to_notificationFragment)
         }
