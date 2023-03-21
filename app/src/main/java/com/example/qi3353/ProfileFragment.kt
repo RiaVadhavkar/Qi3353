@@ -29,8 +29,7 @@ class ProfileFragment : Fragment() {
         binding.navigation.searchBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_profileFragment_to_searchFragment)
         }
-
-        binding.preferencesBtn.setOnClickListener {
+        binding.preferencesButton.setOnClickListener {
             view.findNavController().navigate(R.id.action_profileFragment_to_preferencesFragment)
         }
         binding.notificationBtn.setOnClickListener {
