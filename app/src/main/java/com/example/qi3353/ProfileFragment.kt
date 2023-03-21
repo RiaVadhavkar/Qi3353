@@ -35,6 +35,9 @@ class ProfileFragment : Fragment() {
         binding.preferencesButton.setOnClickListener {
             view.findNavController().navigate(R.id.action_profileFragment_to_preferencesFragment)
         }
+        binding.logoutButton.setOnClickListener {
+            view.findNavController().navigate(R.id.action_profileFragment_to_signInFragment)
+        }
 
         val spinner = binding.reminderSpinner
         ArrayAdapter.createFromResource(
