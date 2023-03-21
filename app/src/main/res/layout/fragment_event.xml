@@ -31,6 +31,7 @@
             android:id="@+id/eventNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_extrabold"
             android:text="Event Name"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -39,6 +40,7 @@
             android:id="@+id/dateText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
             android:text="Wed, Mar 01 2023"
             android:textSize="16sp" />
 
@@ -46,6 +48,7 @@
             android:id="@+id/timeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
             android:text="XX:XX AM/PM - XX:XX AM/PM"
             android:textSize="16sp" />
 
@@ -53,6 +56,7 @@
             android:id="@+id/locationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
             android:text="MCB 110"
             android:textSize="16sp" />
 
@@ -60,6 +64,7 @@
             android:id="@+id/restrictionsText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
             android:text="No Restrictions"
             android:textSize="16sp" />
 
@@ -73,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/inter_extrabold"
                 android:text="Add To Calendar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,16 +90,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/inter_extrabold"
                 android:text="Subscribe"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/descriptionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
             android:text="Description"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -102,6 +110,7 @@
             android:id="@+id/descriptionParagraphText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec porttitor ipsum. In rhoncus aliquam mauris quis lacinia. Integer vitae auctor augue. Aenean egestas nunc augue, non rutrum ligula suscipit non.   Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse arcu mauris, feugiat id leo at, auctor egestas dui. Nunc vitae gravida ipsum, ut dignissim felis. Praesent et nisl dui. Quisque fringilla venenatis orci ac vulputate. Quisque id lacinia metus. In feugiat nulla nisl, molestie gravida metus dictum eget."
             android:textSize="16sp" />
     </LinearLayout>

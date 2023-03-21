@@ -83,9 +83,6 @@
             android:id="@+id/action_profileFragment_to_eventFragment"
             app:destination="@id/eventFragment" />
         <action
-            android:id="@+id/action_profileFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_preferencesFragment"
             app:destination="@id/preferencesFragment" />
     </fragment>
@@ -102,21 +99,6 @@
             app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_eventFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/notificationFragment"
-        android:name="com.example.qi3353.NotificationFragment"
-        android:label="fragment_notification"
-        tools:layout="@layout/fragment_notification" >
-        <action
-            android:id="@+id/action_notificationFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_notificationFragment_to_forYouFragment"
-            app:destination="@id/forYouFragment" />
-        <action
-            android:id="@+id/action_notificationFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
     </fragment>
 </navigation>

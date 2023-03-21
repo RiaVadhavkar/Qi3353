@@ -7,15 +7,13 @@
     tools:context=".SignInFragment">
 
 
-    <Button
-        android:id="@+id/signInWithGoogle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/font_awesome"
-        android:text="Sign-in with Google"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/qi3353Icon"
+        android:layout_width="165dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/qi3353"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,22 +21,43 @@
         android:id="@+id/searchBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/inter_extrabold"
         android:text="Qi3353"
+        android:textColor="@color/black"
         android:textSize="70sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/qi3353Icon" />
+
+    <Button
+        android:id="@+id/signInWithGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/google"
+        android:fontFamily="@font/inter_extrabold"
+        android:text="Sign-in with Google"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBtn"
+        app:layout_constraintVertical_bias="0.491"
+        app:strokeColor="@color/black" />
 
     <TextView
         android:id="@+id/continueAsGuest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
+        android:fontFamily="@font/inter_extrabold"
         android:linksClickable="true"
         android:text="Continue as Guest"
-        android:textColor="#2196F3"
+        android:textColor="@color/black"
         android:textColorLink="#2196F3"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

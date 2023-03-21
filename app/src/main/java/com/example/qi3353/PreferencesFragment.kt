@@ -34,7 +34,7 @@ class PreferencesFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = PreferencesRVA(activity as MainActivity)
 
-        binding.continueBtn.setOnClickListener {
+        binding.continueButton.setOnClickListener {
             view.findNavController().navigate(R.id.action_preferencesFragment_to_forYouFragment)
         }
 
