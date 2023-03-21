@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/notificationSwitch" />
 
     <Spinner
-        android:id="@+id/notifcationSpinner"
+        android:id="@+id/reminderSpinner"
         android:layout_width="357dp"
         android:layout_height="53dp"
         android:layout_marginTop="50dp"
@@ -81,7 +81,7 @@
         app:layout_constraintBottom_toTopOf="@id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notifcationSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/reminderSpinner" />
 
     <include
         android:id="@+id/navigation"
