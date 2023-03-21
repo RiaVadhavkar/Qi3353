@@ -35,10 +35,10 @@ class SearchFragment : Fragment() {
         recyclerView.adapter = SearchRVA(activity as MainActivity)
 
         // Bottom navigation buttons.
-        binding.homeBtn.setOnClickListener {
+        binding.navigation.homeBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_searchFragment_to_forYouFragment)
         }
-        binding.profileBtn.setOnClickListener {
+        binding.navigation.profileBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_searchFragment_to_profileFragment)
         }
 

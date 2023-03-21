@@ -23,13 +23,13 @@ class NotificationFragment : Fragment() {
         val view = binding.root
 
         // Bottom navigation buttons.
-        binding.homeBtn.setOnClickListener {
+        binding.navigation.homeBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_notificationFragment_to_forYouFragment)
         }
-        binding.searchBtn.setOnClickListener {
+        binding.navigation.searchBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_notificationFragment_to_searchFragment)
         }
-        binding.profileBtn.setOnClickListener {
+        binding.navigation.profileBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_notificationFragment_to_profileFragment)
         }
 

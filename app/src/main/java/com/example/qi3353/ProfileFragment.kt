@@ -23,17 +23,15 @@ class ProfileFragment : Fragment() {
         var view = binding.root
 
         // Bottom navigation buttons.
-        binding.homeBtn.setOnClickListener {
+        binding.navigation.homeBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_profileFragment_to_forYouFragment)
         }
-        binding.searchBtn.setOnClickListener {
+        binding.navigation.searchBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_profileFragment_to_searchFragment)
         }
-
         binding.preferencesButton.setOnClickListener {
             view.findNavController().navigate(R.id.action_profileFragment_to_preferencesFragment)
         }
-
         binding.notificationBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_profileFragment_to_notificationFragment)
         }
