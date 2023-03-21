@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qi3353.databinding.FragmentForYouBinding
@@ -50,13 +52,27 @@ class ForYouFragment : Fragment() {
         ).bufferedReader().use{it.readText()}
         val outputJsonString=JSONObject(jsonData)
 
+
         val events = outputJsonString.getJSONArray("events") as JSONArray
         for (i in 0 until events.length()){
+            val restrictionsList = mutableListOf<String>()
 
+            val jsonArray = events.getJSONObject(i).getJSONArray("restrictions")
+//            Log.d("", "Strings: " + jsonArray.toString())
+            if (jsonArray != null) {
+                for (i in 0 until jsonArray.length()) {
+//                    Log.d("", "adding: " + jsonArray[i].toString())
+                    restrictionsList.add(jsonArray[i].toString())
+                }
+            }
+
+//            Log.d("", "restrict list: " + restrictionsList.toString())
             eventList.add(
                 Event(
                     events.getJSONObject(i).get("eventId").toString(),
                     events.getJSONObject(i).get("name").toString(),
+                    events.getJSONObject(i).get("description").toString(),
+                    restrictionsList,
                     events.getJSONObject(i).get("start_time").toString(),
                     events.getJSONObject(i).get("end_time").toString(),
                     events.getJSONObject(i).get("location").toString(),
@@ -65,13 +81,15 @@ class ForYouFragment : Fragment() {
                 )
             )
 
+//            restrictionsList.clear()
+
 
 
             val eventId = events.getJSONObject(i).get("eventId")
             //val organization = events.getJSONObject(i).get("organization")
             val name = events.getJSONObject(i).get("name")
-            //val description = events.getJSONObject(i).get("description")
-            //val restrictions = events.getJSONObject(i).get("restrictions")
+            val description = events.getJSONObject(i).get("description")
+//            val restrictions = events.getJSONObject(i).get("restrictions") as MutableList<*>
             val start_time = events.getJSONObject(i).get("start_time")
             val end_time= events.getJSONObject(i).get("end_time")
             val location = events.getJSONObject(i).get("location")
@@ -147,6 +165,27 @@ class ForYouFragment : Fragment() {
 
             //val calendar = context!!.resources.getIdentifier("calendar", "drawable", context!!.packageName)
             //holder.view.findViewById<ImageView>(R.id.calendarButton).setImageResource(calendar) //= events[position].photo
+
+
+            holder.itemView.setOnClickListener {
+                // interact with the item
+//                Log.d("", "on click: " + events[position].restrictions.toString())
+
+                NavHostFragment.findNavController(this@ForYouFragment).navigate(R.id.action_forYouFragment_to_eventFragment,
+                    bundleOf("eventName" to events[position].name, "date" to events[position].date,
+                    "startTime" to events[position].start_time, "endTime" to events[position].end_time,
+                    "location" to events[position].location, "position" to position, "description" to events[position].description,
+                    "restrictions" to events[position].restrictions, "image" to imgId
+                    ))
+
+//                bundleOf("eventName" to events[position].name, "date" to events[position].date,
+//                    "startTime" to events[position].start_time, "endTime" to events[position].end_time,
+//                    "location" to events[position].location, "position" to position, "event" to events[position]
+//                )
+
+                // event name, date, start time, end time, location, restrictions, description
+
+            }
         }
     /*
         fun filterClasses(markerChoice: String, timeStart: String, timeEnd: String, date: String, part: String) {
