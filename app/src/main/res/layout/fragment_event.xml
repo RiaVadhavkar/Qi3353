@@ -1,162 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EventFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/eventImage"
+        android:layout_width="363dp"
+        android:layout_height="206dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventImage">
 
-        <ImageView
-            android:id="@+id/eventImage"
-            android:layout_width="363dp"
-            android:layout_height="206dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
-
-        <LinearLayout
-            android:layout_width="409dp"
-            android:layout_height="523dp"
-            android:layout_marginTop="1dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eventImage">
-
-            <TextView
-                android:id="@+id/eventNameText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Event Name"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/dateText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Wed, Mar 01 2023"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/timeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="XX:XX AM/PM - XX:XX AM/PM"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/locationText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="MCB 110"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/restrictionsText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No Restrictions"
-                android:textSize="16sp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="92dp">
-
-                <Button
-                    android:id="@+id/addToCalendarButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_weight="1"
-                    android:text="Add To Calendar"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/subscribeButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="30dp"
-                    android:layout_weight="1"
-                    android:text="Subscribe"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/descriptionText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/descriptionParagraphText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec porttitor ipsum. In rhoncus aliquam mauris quis lacinia. Integer vitae auctor augue. Aenean egestas nunc augue, non rutrum ligula suscipit non.   Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse arcu mauris, feugiat id leo at, auctor egestas dui. Nunc vitae gravida ipsum, ut dignissim felis. Praesent et nisl dui. Quisque fringilla venenatis orci ac vulputate. Quisque id lacinia metus. In feugiat nulla nisl, molestie gravida metus dictum eget."
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <View
+        <TextView
+            android:id="@+id/eventNameText"
             android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:layout_marginBottom="16dp"
-            android:background="#000000"
-            app:layout_constraintBottom_toTopOf="@+id/homeBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="wrap_content"
+            android:text="Event Name"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/homeBtn"
-            android:layout_width="wrap_content"
+            android:id="@+id/dateText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/font_awesome"
-            android:text="\uf015"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:text="Wed, Mar 01 2023"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/searchBtn"
-            android:layout_width="wrap_content"
+            android:id="@+id/timeText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/font_awesome"
-            android:text="\uf002"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/profileBtn"
-            app:layout_constraintStart_toEndOf="@+id/homeBtn" />
+            android:text="XX:XX AM/PM - XX:XX AM/PM"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/profileBtn"
-            android:layout_width="wrap_content"
+            android:id="@+id/locationText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="70dp"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/font_awesome"
-            android:text="\uf007"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:text="MCB 110"
+            android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/restrictionsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No Restrictions"
+            android:textSize="16sp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="92dp">
+
+            <Button
+                android:id="@+id/addToCalendarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_weight="1"
+                android:text="Add To Calendar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/subscribeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:layout_weight="1"
+                android:text="Subscribe"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/descriptionParagraphText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec porttitor ipsum. In rhoncus aliquam mauris quis lacinia. Integer vitae auctor augue. Aenean egestas nunc augue, non rutrum ligula suscipit non.   Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse arcu mauris, feugiat id leo at, auctor egestas dui. Nunc vitae gravida ipsum, ut dignissim felis. Praesent et nisl dui. Quisque fringilla venenatis orci ac vulputate. Quisque id lacinia metus. In feugiat nulla nisl, molestie gravida metus dictum eget."
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

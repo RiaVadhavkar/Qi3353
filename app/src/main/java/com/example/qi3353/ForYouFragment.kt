@@ -32,10 +32,10 @@ class ForYouFragment : Fragment() {
         var view = binding.root
 
         // Bottom navigation buttons.
-        binding.searchBtn.setOnClickListener {
+        binding.navigation.searchBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_forYouFragment_to_searchFragment)
         }
-        binding.profileBtn.setOnClickListener {
+        binding.navigation.profileBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_forYouFragment_to_profileFragment)
         }
 

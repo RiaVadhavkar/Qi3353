@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
-
     <TextView
         android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Profile"
         android:textSize="36sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/preferencesBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,16 +45,17 @@
 <!--        app:layout_constraintTop_toBottomOf="@+id/profile" />-->
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/preferencesBtn"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:text="Preferences"
         android:textAllCaps="false"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile"
+        app:layout_constraintBottom_toTopOf="@id/notificationBtn"/>
 
     <Button
         android:id="@+id/notificationBtn"
@@ -65,12 +65,13 @@
         android:text="Push Notifications"
         android:textAllCaps="false"
         android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@id/logOut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@id/preferencesBtn" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/logOut"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -78,61 +79,19 @@
         android:text="LOG OUT"
         android:textAllCaps="false"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/view3"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notificationBtn" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notificationBtn"
+        app:layout_constraintBottom_toTopOf="@id/navigation" />
 
-
-    <View
-        android:id="@+id/view3"
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/navigation"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_marginBottom="16dp"
-        android:background="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/homeBtn"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/homeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="@font/font_awesome"
-        android:text="\uf015"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/searchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="@font/font_awesome"
-        android:text="\uf002"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/profileBtn"
-        app:layout_constraintStart_toEndOf="@+id/homeBtn" />
-
-    <TextView
-        android:id="@+id/profileBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="@font/font_awesome"
-        android:text="\uf007"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
