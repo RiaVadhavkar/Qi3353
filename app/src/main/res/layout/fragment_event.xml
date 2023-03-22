@@ -76,11 +76,12 @@
                 android:id="@+id/addToCalendarButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/font_awesome"
-                android:text="\uf271 Add To Calendar"
+                android:drawableLeft="@drawable/addtocalendar"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Add To Calendar"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/subscribeButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +89,7 @@
                 android:id="@+id/subscribeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter_extrabold"
                 android:text="Subscribe"
@@ -111,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec porttitor ipsum. In rhoncus aliquam mauris quis lacinia. Integer vitae auctor augue. Aenean egestas nunc augue, non rutrum ligula suscipit non.   Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse arcu mauris, feugiat id leo at, auctor egestas dui. Nunc vitae gravida ipsum, ut dignissim felis. Praesent et nisl dui. Quisque fringilla venenatis orci ac vulputate. Quisque id lacinia metus. In feugiat nulla nisl, molestie gravida metus dictum eget."
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec porttitor ipsum. In rhoncus aliquam mauris quis lacinia. Integer vitae auctor augue. Aenean egestas nunc augue, non rutrum ligula suscipit non. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse arcu mauris, feugiat id leo at, auctor egestas dui. Nunc vitae gravida ipsum, ut dignissim felis. Praesent et nisl dui. Quisque fringilla venenatis orci ac vulputate. Quisque id lacinia metus. In feugiat nulla nisl, molestie gravida metus dictum eget."
             android:textSize="16sp" />
     </LinearLayout>
 
