@@ -38,8 +38,8 @@ class SearchFragment : Fragment() {
         binding.navigation.homeBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_searchFragment_to_forYouFragment)
         }
-        binding.navigation.profileBtn.setOnClickListener {
-            view.findNavController().navigate(R.id.action_searchFragment_to_profileFragment)
+        binding.navigation.settingsBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_searchFragment_to_settingsFragment)
         }
 
         return view

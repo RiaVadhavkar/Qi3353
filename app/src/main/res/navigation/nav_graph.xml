@@ -6,22 +6,10 @@
     app:startDestination="@id/signInFragment">
 
     <fragment
-        android:id="@+id/loadingFragment"
-        android:name="com.example.qi3353.LoadingFragment"
-        android:label="fragment_loading"
-        tools:layout="@layout/fragment_loading">
-        <action
-            android:id="@+id/action_signInFragment_to_registrationFragment"
-            app:destination="@id/forYouFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/signInFragment"
         android:name="com.example.qi3353.SignInFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_in" >
-        <action
-            android:id="@+id/loadingFragment"
-            app:destination="@id/loadingFragment" />
         <action
             android:id="@+id/action_signInFragment_to_preferencesFragment"
             app:destination="@id/preferencesFragment" />
@@ -47,11 +35,11 @@
             android:id="@+id/action_forYouFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
         <action
-            android:id="@+id/action_forYouFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
             android:id="@+id/action_forYouFragment_to_eventFragment"
             app:destination="@id/eventFragment" />
+        <action
+            android:id="@+id/action_forYouFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -62,32 +50,11 @@
             android:id="@+id/action_searchFragment_to_forYouFragment"
             app:destination="@id/forYouFragment" />
         <action
-            android:id="@+id/action_searchFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
             android:id="@+id/action_searchFragment_to_eventFragment"
             app:destination="@id/eventFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.qi3353.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_forYouFragment"
-            app:destination="@id/forYouFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_eventFragment"
-            app:destination="@id/eventFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_preferencesFragment"
-            app:destination="@id/preferencesFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            android:id="@+id/action_searchFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/eventFragment"
@@ -98,10 +65,28 @@
             android:id="@+id/action_eventFragment_to_forYouFragment"
             app:destination="@id/forYouFragment" />
         <action
-            android:id="@+id/action_eventFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
             android:id="@+id/action_eventFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_eventFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.qi3353.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_forYouFragment"
+            app:destination="@id/forYouFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_preferencesFragment"
+            app:destination="@id/preferencesFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
 </navigation>

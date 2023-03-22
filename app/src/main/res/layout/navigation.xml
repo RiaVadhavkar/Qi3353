@@ -40,12 +40,12 @@
         android:textColor="#000000"
         android:textSize="35sp"
         app:layout_constraintStart_toEndOf="@id/homeBtn"
-        app:layout_constraintEnd_toStartOf="@id/profileBtn"
+        app:layout_constraintEnd_toStartOf="@id/settingsBtn"
         app:layout_constraintTop_toBottomOf="@id/border"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
-        android:id="@+id/profileBtn"
+        android:id="@+id/settingsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_awesome"

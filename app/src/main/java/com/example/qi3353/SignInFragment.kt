@@ -107,7 +107,7 @@ class SignInFragment : Fragment() {
                 intent.putExtra("email", account.email)
                 intent.putExtra("displayName", account.displayName)
                 startActivity(intent)
-                view.findNavController().navigate(R.id.action_signInFragment_to_registrationFragment)
+                view.findNavController().navigate(R.id.action_signInFragment_to_preferencesFragment)
             }else{
                 Toast.makeText(activity, it.exception.toString(), Toast.LENGTH_SHORT).show()
             }
