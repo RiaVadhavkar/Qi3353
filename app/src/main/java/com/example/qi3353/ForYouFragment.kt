@@ -14,15 +14,25 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qi3353.databinding.FragmentForYouBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import org.json.JSONArray
 import org.json.JSONObject
 
 class ForYouFragment : Fragment() {
+    lateinit var database: FirebaseDatabase
+
     private lateinit var binding: FragmentForYouBinding
 
     private lateinit var recyclerView: RecyclerView
     lateinit var viewAdapter: RecyclerView.Adapter<*>
     var eventList :  MutableList<Event> = mutableListOf()
+    var eventsList :  MutableList<Event> = mutableListOf()
+
 
 
     override fun onCreateView(
@@ -32,6 +42,37 @@ class ForYouFragment : Fragment() {
         // Sets up binding.
         binding = FragmentForYouBinding.inflate(inflater, container, false)
         var view = binding.root
+
+        database = Firebase.database
+
+        val myRef = database.reference.child("Events")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                eventsList = mutableListOf<Event>()
+                for (elem in dataSnapshot.children){
+                    elem.getValue(String::class.java)
+                        ?.let { Log.d("test", it) }
+                    //JSONObject(elem.toString()).get("id").toString() )
+                    //listy.add(elem.getValue(LocationData::class.java)!!)
+                    //Log.d("Test", "Value is: " + elem.getValue(LocationData::class.java)!!)
+
+                    //recyclerView = findViewById(com.google.firebase.database.R.id.recycler_view)
+                    //recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+                    //viewAdapter = RecyclerViewAdapter(listy)
+                    //recyclerView.adapter = viewAdapter
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w("Test", "Failed to read value.", error.toException())
+            }
+
+        })
 
         // Bottom navigation buttons.
         binding.navigation.searchBtn.setOnClickListener {
