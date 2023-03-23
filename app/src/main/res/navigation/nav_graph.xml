@@ -106,5 +106,8 @@
         <action
             android:id="@+id/action_searchResultFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_searchResultFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
     </fragment>
 </navigation>

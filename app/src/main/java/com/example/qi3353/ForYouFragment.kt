@@ -82,7 +82,7 @@ class ForYouFragment : Fragment() {
             view.findNavController().navigate(R.id.action_forYouFragment_to_settingsFragment)
         }
 
-
+        eventList.clear()
 
         val jsonData=view.resources.openRawResource(
             view.resources.getIdentifier(
