@@ -52,20 +52,20 @@ class SearchFragment : Fragment() {
 
         val events = outputJsonString.getJSONArray("events") as JSONArray
         for (i in 0 until events.length()){
-            val restrictionsList = mutableListOf<String>()
+//            val restrictionsList = mutableListOf<String>()
 
-            var jsonArray = events.getJSONObject(i).getJSONArray("restrictions")
+//            var jsonArray = events.getJSONObject(i).getJSONArray("restrictions")
 //            Log.d("", "Strings: " + jsonArray.toString())
-            if (jsonArray != null) {
-                for (i in 0 until jsonArray.length()) {
-//                    Log.d("", "adding: " + jsonArray[i].toString())
-                    restrictionsList.add(jsonArray[i].toString())
-                }
-            }
+//            if (jsonArray != null) {
+//                for (i in 0 until jsonArray.length()) {
+////                    Log.d("", "adding: " + jsonArray[i].toString())
+//                    restrictionsList.add(jsonArray[i].toString())
+//                }
+//            }
 
             val tagsList = mutableListOf<String>()
 
-            jsonArray = events.getJSONObject(i).getJSONArray("tags")
+            var jsonArray = events.getJSONObject(i).getJSONArray("tags")
             if (jsonArray != null) {
                 for (i in 0 until jsonArray.length()) {
                     tagsList.add(jsonArray[i].toString())
@@ -78,7 +78,7 @@ class SearchFragment : Fragment() {
                     events.getJSONObject(i).get("eventId").toString(),
                     events.getJSONObject(i).get("name").toString(),
                     events.getJSONObject(i).get("description").toString(),
-                    restrictionsList,
+//                    restrictionsList,
                     events.getJSONObject(i).get("start_time").toString(),
                     events.getJSONObject(i).get("end_time").toString(),
                     events.getJSONObject(i).get("location").toString(),
