@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qi3353.databinding.FragmentSearchBinding
@@ -62,6 +63,7 @@ class SearchFragment : Fragment() {
 
             holder.itemView.setOnClickListener {
                 // filter events by tags
+                NavHostFragment.findNavController(this@SearchFragment).navigate(R.id.action_searchFragment_to_searchResultFragment)
             }
         }
 
