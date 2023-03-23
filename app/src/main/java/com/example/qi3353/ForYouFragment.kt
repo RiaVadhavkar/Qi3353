@@ -57,7 +57,7 @@ class ForYouFragment : Fragment() {
         for (i in 0 until events.length()){
             val restrictionsList = mutableListOf<String>()
 
-            val jsonArray = events.getJSONObject(i).getJSONArray("restrictions")
+            var jsonArray = events.getJSONObject(i).getJSONArray("restrictions")
 //            Log.d("", "Strings: " + jsonArray.toString())
             if (jsonArray != null) {
                 for (i in 0 until jsonArray.length()) {
@@ -66,7 +66,16 @@ class ForYouFragment : Fragment() {
                 }
             }
 
-//            Log.d("", "restrict list: " + restrictionsList.toString())
+            val tagsList = mutableListOf<String>()
+
+            jsonArray = events.getJSONObject(i).getJSONArray("tags")
+            if (jsonArray != null) {
+                for (i in 0 until jsonArray.length()) {
+                    tagsList.add(jsonArray[i].toString())
+                }
+            }
+
+//            Log.d("", "tag list: " + tagsList.toString())
             eventList.add(
                 Event(
                     events.getJSONObject(i).get("eventId").toString(),
@@ -76,6 +85,7 @@ class ForYouFragment : Fragment() {
                     events.getJSONObject(i).get("start_time").toString(),
                     events.getJSONObject(i).get("end_time").toString(),
                     events.getJSONObject(i).get("location").toString(),
+                    tagsList,
                     events.getJSONObject(i).get("photo").toString(),
                     events.getJSONObject(i).get("date").toString()
                 )

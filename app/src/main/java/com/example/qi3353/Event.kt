@@ -10,7 +10,7 @@ data class Event(
     var end_time: String,
     var location: String,
     //var calendar_link: MutableList<String>,
-    //var tags:  MutableList<String>,
+    var tags:  MutableList<String>,
     //var passed: Boolean,
     var photo: String,
     //var original_link: String

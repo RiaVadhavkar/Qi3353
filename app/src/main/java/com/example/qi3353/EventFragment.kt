@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentEventBinding
 import com.example.qi3353.databinding.FragmentForYouBinding
 import java.util.*
@@ -53,6 +54,17 @@ class EventFragment : Fragment() {
         // Sets up binding.
         binding = FragmentEventBinding.inflate(inflater, container, false)
         var view = binding.root
+
+        // Bottom navigation buttons.
+        binding.navigation.homeBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_eventFragment_to_forYouFragment)
+        }
+        binding.navigation.searchBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_eventFragment_to_searchFragment)
+        }
+        binding.navigation.settingsBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_eventFragment_to_settingsFragment)
+        }
 
         eventName = this.arguments?.getString("eventName")
         date =  this.arguments?.getString("date")

@@ -59,6 +59,10 @@ class SearchFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.bindItems(Tags.values()[position].toString())
+
+            holder.itemView.setOnClickListener {
+                // filter events by tags
+            }
         }
 
         override fun getItemCount() = Tags.values().size
