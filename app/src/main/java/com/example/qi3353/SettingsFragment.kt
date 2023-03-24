@@ -10,9 +10,15 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentSettingsBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var client: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +31,15 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         var view = binding.root
 
+        auth = FirebaseAuth.getInstance()
+
+        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        client = GoogleSignIn.getClient(view.context, options)
+
         binding.navigation.homeBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_settingsFragment_to_forYouFragment)
         }
@@ -35,6 +50,8 @@ class SettingsFragment : Fragment() {
             view.findNavController().navigate(R.id.action_settingsFragment_to_preferencesFragment)
         }
         binding.logoutButton.setOnClickListener {
+            auth.signOut()
+            client.signOut()
             view.findNavController().navigate(R.id.action_settingsFragment_to_signInFragment)
         }
 
