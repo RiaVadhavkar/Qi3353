@@ -8,14 +8,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentSettingsBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                println("Fetching FCM registration token failed")
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+            println(token)
+            Toast.makeText(activity, "Your device registration token is" + token, Toast.LENGTH_SHORT).show()
+        })
     }
 
     override fun onCreateView(
@@ -59,4 +75,5 @@ class SettingsFragment : Fragment() {
 
         return view
     }
+
 }
