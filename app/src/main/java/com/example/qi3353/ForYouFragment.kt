@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qi3353.databinding.FragmentForYouBinding
@@ -41,6 +43,14 @@ class ForYouFragment : Fragment() {
         // Sets up binding.
         binding = FragmentForYouBinding.inflate(inflater, container, false)
         var view = binding.root
+
+        val prevFragId = findNavController().previousBackStackEntry!!.destination.id
+
+        if ((prevFragId == R.id.signInFragment) || (prevFragId == R.id.preferencesFragment)) {
+            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+                // LEAVE EMPTY
+            }
+        }
 
         database = Firebase.database
 
