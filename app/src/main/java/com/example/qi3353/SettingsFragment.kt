@@ -8,30 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentSettingsBinding
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.messaging.FirebaseMessaging
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var client: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                println("Fetching FCM registration token failed")
-                return@OnCompleteListener
-            }
-
-            // Get new FCM registration token
-            val token = task.result
-
-            // Log and toast
-            println(token)
-            Toast.makeText(activity, "Your device registration token is" + token, Toast.LENGTH_SHORT).show()
-        })
     }
 
     override fun onCreateView(
@@ -40,6 +30,15 @@ class SettingsFragment : Fragment() {
     ): View? {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         var view = binding.root
+
+        auth = FirebaseAuth.getInstance()
+
+        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        client = GoogleSignIn.getClient(view.context, options)
 
         binding.navigation.homeBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_settingsFragment_to_forYouFragment)
@@ -51,6 +50,8 @@ class SettingsFragment : Fragment() {
             view.findNavController().navigate(R.id.action_settingsFragment_to_preferencesFragment)
         }
         binding.logoutButton.setOnClickListener {
+            auth.signOut()
+            client.signOut()
             view.findNavController().navigate(R.id.action_settingsFragment_to_signInFragment)
         }
 
@@ -75,5 +76,4 @@ class SettingsFragment : Fragment() {
 
         return view
     }
-
 }

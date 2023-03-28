@@ -22,7 +22,7 @@ class EventFragment : Fragment() {
     var location: String? = null
     var position: Int = 0
     var description: String? = null
-    var restrictions: MutableList<String>? = null
+//    var restrictions: MutableList<String>? = null
     var imageID: Int = 0
 //    var event: Event? = null
     // event name, date, start time, end time, location, restrictions, description
@@ -45,7 +45,7 @@ class EventFragment : Fragment() {
         location = this.arguments?.getString("location")
         position = this.requireArguments().getInt("position")
         description = this.arguments?.getString("description")
-        restrictions = this.arguments?.get("restrictions") as MutableList<String>
+//        restrictions = this.arguments?.get("restrictions") as MutableList<String>
         imageID = this.requireArguments().getInt("image")
 //        event = this.arguments?.get("event") as Event
 
@@ -56,22 +56,22 @@ class EventFragment : Fragment() {
         binding.descriptionParagraphText.text = description
         binding.eventImage.setImageResource(imageID)
 
-        var restrictionsString = "Only: "
-//        Log.d("", "Out restrictions, string = " + restrictions.toString())
-//        Log.d("", "Out restrictions, size = " + restrictions!!.size.toString())
-        if(restrictions != null){
-//            Log.d("", "In restrictions")
-            for (i in 0 until restrictions!!.size) {
-                restrictionsString += restrictions!!.get(i)
-                if(i != restrictions!!.size - 1){
-                    restrictionsString += ", "
-                }
-            }
-            binding.restrictionsText.text = restrictionsString
-        }
-        if(restrictionsString.equals("Only: ")){
-            binding.restrictionsText.text = "No Restrictions"
-        }
+//        var restrictionsString = "Only: "
+////        Log.d("", "Out restrictions, string = " + restrictions.toString())
+////        Log.d("", "Out restrictions, size = " + restrictions!!.size.toString())
+//        if(restrictions != null){
+////            Log.d("", "In restrictions")
+//            for (i in 0 until restrictions!!.size) {
+//                restrictionsString += restrictions!!.get(i)
+//                if(i != restrictions!!.size - 1){
+//                    restrictionsString += ", "
+//                }
+//            }
+//            binding.restrictionsText.text = restrictionsString
+//        }
+//        if(restrictionsString.equals("Only: ")){
+//            binding.restrictionsText.text = "No Restrictions"
+//        }
 
         binding.navigation.homeBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_eventFragment_to_forYouFragment)

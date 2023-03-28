@@ -5,7 +5,7 @@ data class Event(
     //var organization: String, TODO WILL USE
     var name: String,
     var description: String,
-    var restrictions:  MutableList<String>, // TODO DELETE
+//    var restrictions:  MutableList<String>, // TODO DELETE
     var start_time: String,
     var end_time: String,
     var location: String,

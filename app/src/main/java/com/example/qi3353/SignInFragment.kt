@@ -17,13 +17,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
-const val REQUEST_CODE = 0
-
 class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     private lateinit var view: View
     private lateinit var auth: FirebaseAuth
     private lateinit var client: GoogleSignInClient
+    private val expectedRequestCode = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,12 +58,12 @@ class SignInFragment : Fragment() {
 
     private fun signInWithGoogle() {
         val signInIntent = client.signInIntent
-        startActivityForResult(signInIntent, REQUEST_CODE)
+        startActivityForResult(signInIntent, expectedRequestCode)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE) {
+        if (requestCode == expectedRequestCode) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             if (task.isSuccessful) {
                 val account = task.result
@@ -90,7 +89,12 @@ class SignInFragment : Fragment() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(activity, "Sign in successful.", Toast.LENGTH_SHORT).show()
-                view.findNavController().navigate(R.id.action_signInFragment_to_preferencesFragment)
+                if (it.result.additionalUserInfo!!.isNewUser) {
+                    view.findNavController().navigate(R.id.action_signInFragment_to_preferencesFragment)
+                }
+                else {
+                    view.findNavController().navigate(R.id.action_signInFragment_to_forYouFragment)
+                }
             }
             else {
                 Toast.makeText(activity, it.exception.toString(), Toast.LENGTH_SHORT).show()

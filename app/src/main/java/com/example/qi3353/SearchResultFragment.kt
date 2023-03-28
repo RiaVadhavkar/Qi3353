@@ -32,7 +32,7 @@ class SearchResultFragment : Fragment() {
     lateinit var viewAdapter: RecyclerView.Adapter<*>
 
     var eventFilter: MutableList<Event> = mutableListOf()
-    var searchTerm : String = ""
+    var searchTerm: String = ""
 
 
     override fun onCreateView(
@@ -73,32 +73,41 @@ class SearchResultFragment : Fragment() {
     }
 
 
-    inner class RecyclerViewAdapter(private var cnt: Int, private var events: MutableList<Event> ) :
+    inner class RecyclerViewAdapter(private var cnt: Int, private var events: MutableList<Event>) :
         RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
 
-        override fun onCreateViewHolder(parent: ViewGroup,
-                                        viewType: Int): RecyclerViewAdapter.ViewHolder {
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): RecyclerViewAdapter.ViewHolder {
             val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.card_item, parent, false)
             return ViewHolder(v)
         }
+
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name
 
             holder.view.findViewById<TextView>(R.id.date).text = events[position].date
-            holder.view.findViewById<TextView>(R.id.time).text = events[position].start_time + " - " + events[position].end_time
+            holder.view.findViewById<TextView>(R.id.time).text =
+                events[position].start_time + " - " + events[position].end_time
             holder.view.findViewById<TextView>(R.id.location).text = events[position].location
             if (events[position].location.length > 20) {
-                holder.view.findViewById<TextView>(R.id.location).text = events[position].location.substring(0,17) + "..."
-            }
-            else {
+                holder.view.findViewById<TextView>(R.id.location).text =
+                    events[position].location.substring(0, 17) + "..."
+            } else {
                 holder.view.findViewById<TextView>(R.id.location).text = events[position].location
             }
 
             var stringGenerated = events[position].photo
-            val imgId = context!!.resources.getIdentifier("$stringGenerated", "drawable", context!!.packageName)
-            holder.view.findViewById<ImageView>(R.id.imageView).setImageResource(imgId) //= events[position].photo
+            val imgId = context!!.resources.getIdentifier(
+                "$stringGenerated",
+                "drawable",
+                context!!.packageName
+            )
+            holder.view.findViewById<ImageView>(R.id.imageView)
+                .setImageResource(imgId) //= events[position].photo
 
             //val calendar = context!!.resources.getIdentifier("calendar", "drawable", context!!.packageName)
             //holder.view.findViewById<ImageView>(R.id.calendarButton).setImageResource(calendar) //= events[position].photo
@@ -108,11 +117,17 @@ class SearchResultFragment : Fragment() {
                 // interact with the item
 //                Log.d("", "on click: " + events[position].restrictions.toString())
 
-                NavHostFragment.findNavController(this@SearchResultFragment).navigate(R.id.action_searchResultFragment_to_eventFragment,
-                    bundleOf("eventName" to events[position].name, "date" to events[position].date,
-                        "startTime" to events[position].start_time, "endTime" to events[position].end_time,
-                        "location" to events[position].location, "position" to position, "description" to events[position].description,
-                        "restrictions" to events[position].restrictions, "image" to imgId
+                NavHostFragment.findNavController(this@SearchResultFragment).navigate(
+                    R.id.action_searchResultFragment_to_eventFragment,
+                    bundleOf(
+                        "eventName" to events[position].name,
+                        "date" to events[position].date,
+                        "startTime" to events[position].start_time,
+                        "endTime" to events[position].end_time,
+                        "location" to events[position].location,
+                        "position" to position,
+                        "description" to events[position].description,
+                        "image" to imgId
                     )
                 )
 
@@ -129,7 +144,7 @@ class SearchResultFragment : Fragment() {
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = cnt
 
-        inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view){
+        inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             var eventName: TextView
             var imageView: ImageView
             var timeText: TextView
