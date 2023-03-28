@@ -1,5 +1,6 @@
 package com.example.qi3353
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qi3353.databinding.FragmentForYouBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -24,10 +26,12 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.json.JSONArray
 import org.json.JSONObject
+import java.util.stream.Collectors
 
 class ForYouFragment : Fragment() {
     lateinit var database: FirebaseDatabase
 
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: FragmentForYouBinding
 
     private lateinit var recyclerView: RecyclerView
@@ -60,19 +64,19 @@ class ForYouFragment : Fragment() {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 eventsList = mutableListOf<Event>()
-                for (elem in dataSnapshot.children) {
-                    elem.getValue(String::class.java)
-                        ?.let { Log.d("test", it) }
-                    //JSONObject(elem.toString()).get("id").toString() )
-                    //listy.add(elem.getValue(LocationData::class.java)!!)
-                    //Log.d("Test", "Value is: " + elem.getValue(LocationData::class.java)!!)
-
-                    //recyclerView = findViewById(com.google.firebase.database.R.id.recycler_view)
-                    //recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-
-                    //viewAdapter = RecyclerViewAdapter(listy)
-                    //recyclerView.adapter = viewAdapter
-                }
+//                for (elem in dataSnapshot.children) {
+//                    elem.getValue(String::class.java)
+//                        ?.let { Log.d("test", it) }
+//                    //JSONObject(elem.toString()).get("id").toString() )
+//                    //listy.add(elem.getValue(LocationData::class.java)!!)
+//                    //Log.d("Test", "Value is: " + elem.getValue(LocationData::class.java)!!)
+//
+//                    //recyclerView = findViewById(com.google.firebase.database.R.id.recycler_view)
+//                    //recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+//
+//                    //viewAdapter = RecyclerViewAdapter(listy)
+//                    //recyclerView.adapter = viewAdapter
+//                }
 
             }
 
@@ -180,7 +184,57 @@ class ForYouFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        viewAdapter = RecyclerViewAdapter(10, eventList)
+
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        if(user != null){
+            val preferences = this.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+            var temp: MutableSet<String> = mutableSetOf<String>()
+            var clickedPref: Set<String> = preferences.getStringSet(user.email, temp) as Set<String>
+
+            Log.d("pref:", clickedPref.toString())
+            // sort event list with events that have a matching tag higher
+
+            var eventListFrequency: MutableList<String> = mutableListOf<String>()
+
+            for(event in eventList) {
+                eventListFrequency.add(event.eventId)
+            }
+
+            for(tag in clickedPref) {
+                for(event in eventList){
+                    val eventTags = event.tags
+                    for(eventTag in eventTags){
+                        if(tag.lowercase().equals(eventTag.lowercase())){
+                            eventListFrequency.add(event.eventId)
+                            break
+                        }
+                    }
+                }
+            }
+
+
+
+            val comparator = compareByDescending<Map.Entry<String, Int>> { it.value }
+                .thenBy { it.key }
+            var eventIDSorted = eventListFrequency.groupingBy { it }.eachCount().entries
+                .sortedWith(comparator).map { it.key }
+
+            var eventListSorted: MutableList<Event> = mutableListOf<Event>()
+            for(id in eventIDSorted){
+                for(event in eventList){
+                    if(event.eventId.equals(id)){
+                        eventListSorted.add(event)
+                        break
+                    }
+                }
+            }
+
+            viewAdapter = RecyclerViewAdapter(10, eventListSorted)
+        }
+        else {
+            viewAdapter = RecyclerViewAdapter(10, eventList)
+        }
         recyclerView.adapter = viewAdapter
 
 
