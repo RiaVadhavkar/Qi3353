@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.CompoundButton
+import android.widget.Switch
 import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentSettingsBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -29,7 +31,11 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
+
+
         var view = binding.root
+
+        var notificationSwitch = view.findViewById<Switch>(R.id.notificationSwitch)
 
         auth = FirebaseAuth.getInstance()
 
@@ -74,6 +80,14 @@ class SettingsFragment : Fragment() {
             }
         }
 
+        notificationSwitch.setOnCheckedChangeListener { view, isChecked ->
+            if (isChecked){
+                view.findNavController().navigate(R.id.action_settingsFragment_to_notificationTokenFragment);
+            }
+        }
+
         return view
     }
+
+    //notificationSwitch
 }

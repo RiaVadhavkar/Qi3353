@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_notificationTokenFragment"
+            app:destination="@id/notificationTokenFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
@@ -109,5 +112,14 @@
         <action
             android:id="@+id/action_searchResultFragment_to_eventFragment"
             app:destination="@id/eventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationTokenFragment"
+        android:name="com.example.qi3353.NotificationTokenFragment"
+        android:label="notification_token"
+        tools:layout="@layout/notification_token" >
+        <action
+            android:id="@+id/action_notificationTokenFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 </navigation>
