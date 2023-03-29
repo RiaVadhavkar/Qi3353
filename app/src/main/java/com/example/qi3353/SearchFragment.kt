@@ -73,21 +73,21 @@ class SearchFragment : Fragment() {
             }
 
 //            Log.d("", "tag list: " + tagsList.toString())
-            eventList.add(
-                Event(
-                    events.getJSONObject(i).get("eventId").toString(),
-                    events.getJSONObject(i).get("organization").toString(),
-                    events.getJSONObject(i).get("name").toString(),
-                    events.getJSONObject(i).get("description").toString(),
-//                    restrictionsList,
-                    events.getJSONObject(i).get("start_time").toString(),
-                    events.getJSONObject(i).get("end_time").toString(),
-                    events.getJSONObject(i).get("location").toString(),
-                    tagsList,
-                    events.getJSONObject(i).get("photo").toString(),
-                    events.getJSONObject(i).get("date").toString()
-                )
-            )
+//            eventList.add(
+//                Event(
+//                    events.getJSONObject(i).get("eventId").toString(),
+//                    events.getJSONObject(i).get("organization").toString(),
+//                    events.getJSONObject(i).get("name").toString(),
+//                    events.getJSONObject(i).get("description").toString(),
+////                    restrictionsList,
+//                    events.getJSONObject(i).get("start_time").toString(),
+//                    events.getJSONObject(i).get("end_time").toString(),
+//                    events.getJSONObject(i).get("location").toString(),
+//                    tagsList,
+//                    events.getJSONObject(i).get("photo").toString(),
+//                    events.getJSONObject(i).get("date").toString()
+//                )
+//            )
 
         }
 

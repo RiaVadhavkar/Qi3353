@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.stream.Collectors
@@ -63,20 +64,101 @@ class ForYouFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                eventsList = mutableListOf<Event>()
-//                for (elem in dataSnapshot.children) {
-//                    elem.getValue(String::class.java)
-//                        ?.let { Log.d("test", it) }
-//                    //JSONObject(elem.toString()).get("id").toString() )
-//                    //listy.add(elem.getValue(LocationData::class.java)!!)
-//                    //Log.d("Test", "Value is: " + elem.getValue(LocationData::class.java)!!)
-//
-//                    //recyclerView = findViewById(com.google.firebase.database.R.id.recycler_view)
-//                    //recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-//
-//                    //viewAdapter = RecyclerViewAdapter(listy)
-//                    //recyclerView.adapter = viewAdapter
-//                }
+                eventList = mutableListOf<Event>()
+                var tagList = mutableListOf<String>()
+
+                for (elem in dataSnapshot.children) {
+                    //elem.getValue(String::class.java)
+                    //JSONObject(elem.toString()).get("id").toString()
+                    //eventList.add(elem.getValue(Event::class.java)!!)
+                    //Log.d("aafds", JSONObject(elem.getValue(String::class.java)!!).get("eventId").toString())
+//                    Log.d("blalal", JSONObject(elem.getValue(String::class.java)!!).get("eventId").toString())
+                    //JSONArray(JSONObject(elem.getValue(String::class.java)!!).get("tags"))[0].toString()
+                    val tagsList = mutableListOf<String>()
+
+                    var jsonArray = JSONObject(elem.getValue(String::class.java)!!).getJSONArray("tags")
+                    if (jsonArray != null) {
+                        for (i in 0 until jsonArray.length()) {
+                            if (jsonArray[i].toString() != "null") {
+                                tagsList.add(jsonArray[i].toString())
+                                //Log.d("test",jsonArray[i].toString())
+                            }
+                        }
+                    }
+//                    Log.d("test",
+//                        JSONObject(elem.getValue(String::class.java)!!).getJSONArray("tags")[0].toString()
+//                    )
+                    eventList.add(
+                        Event(
+                            JSONObject(elem.getValue(String::class.java)!!).get("eventId").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("organization").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("name").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("description").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("start_time").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("end_time").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("location").toString(),
+                            tagsList,
+                            JSONObject(elem.getValue(String::class.java)!!).get("photo").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("original_link").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("date").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("startRaw").toString(),
+                            JSONObject(elem.getValue(String::class.java)!!).get("endRaw").toString()
+                        )
+                    )
+                }
+                recyclerView = view.findViewById(R.id.recyclerView)
+                recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+                auth = FirebaseAuth.getInstance()
+                val user = auth.currentUser
+                if(user != null){
+                    val preferences = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+                    var temp: MutableSet<String> = mutableSetOf<String>()
+                    var clickedPref: Set<String> = preferences.getStringSet(user.email, temp) as Set<String>
+
+                    Log.d("pref:", clickedPref.toString())
+                    // sort event list with events that have a matching tag higher
+
+                    var eventListFrequency: MutableList<String> = mutableListOf<String>()
+
+                    for(event in eventList) {
+                        eventListFrequency.add(event.eventId)
+                    }
+
+                    for(tag in clickedPref) {
+                        for(event in eventList){
+                            val eventTags = event.tags
+                            for(eventTag in eventTags){
+                                if(tag.lowercase().equals(eventTag.lowercase())){
+                                    eventListFrequency.add(event.eventId)
+                                    break
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    val comparator = compareByDescending<Map.Entry<String, Int>> { it.value }
+                        .thenBy { it.key }
+                    var eventIDSorted = eventListFrequency.groupingBy { it }.eachCount().entries
+                        .sortedWith(comparator).map { it.key }
+
+                    var eventListSorted: MutableList<Event> = mutableListOf<Event>()
+                    for(id in eventIDSorted){
+                        for(event in eventList){
+                            if(event.eventId.equals(id)){
+                                eventListSorted.add(event)
+                                break
+                            }
+                        }
+                    }
+
+                    viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
+                }
+                else {
+                    viewAdapter = RecyclerViewAdapter(eventList.size, eventList)
+                }
+                recyclerView.adapter = viewAdapter
 
             }
 
@@ -130,39 +212,39 @@ class ForYouFragment : Fragment() {
             }
 
 //            Log.d("", "tag list: " + tagsList.toString())
-            eventList.add(
-                Event(
-                    events.getJSONObject(i).get("eventId").toString(),
-                    events.getJSONObject(i).get("organization").toString(),
-                    events.getJSONObject(i).get("name").toString(),
-                    events.getJSONObject(i).get("description").toString(),
-//                    restrictionsList,
-                    events.getJSONObject(i).get("start_time").toString(),
-                    events.getJSONObject(i).get("end_time").toString(),
-                    events.getJSONObject(i).get("location").toString(),
-                    tagsList,
-                    events.getJSONObject(i).get("photo").toString(),
-                    events.getJSONObject(i).get("date").toString()
-                )
-            )
+//            eventList.add(
+//                Event(
+//                    events.getJSONObject(i).get("eventId").toString(),
+//                    events.getJSONObject(i).get("organization").toString(),
+//                    events.getJSONObject(i).get("name").toString(),
+//                    events.getJSONObject(i).get("description").toString(),
+////                    restrictionsList,
+//                    events.getJSONObject(i).get("start_time").toString(),
+//                    events.getJSONObject(i).get("end_time").toString(),
+//                    events.getJSONObject(i).get("location").toString(),
+//                    tagsList,
+//                    events.getJSONObject(i).get("photo").toString(),
+//                    events.getJSONObject(i).get("date").toString()
+//                )
+//            )
 
 //            restrictionsList.clear()
 
 
-            val eventId = events.getJSONObject(i).get("eventId")
-            val organization = events.getJSONObject(i).get("organization")
-            val name = events.getJSONObject(i).get("name")
-            val description = events.getJSONObject(i).get("description")
-//            val restrictions = events.getJSONObject(i).get("restrictions") as MutableList<*>
-            val start_time = events.getJSONObject(i).get("start_time")
-            val end_time = events.getJSONObject(i).get("end_time")
-            val location = events.getJSONObject(i).get("location")
-            //val calendar_link = events.getJSONObject(i).get("calendar_link")
-            //val tags = events.getJSONObject(i).get("tags")
-            //val passed = events.getJSONObject(i).get("passed")
-            val photo = events.getJSONObject(i).get("photo")
-            //val original_link = events.getJSONObject(i).get("original_link")
-            val date = events.getJSONObject(i).get("date")
+//            val eventId = events.getJSONObject(i).get("eventId")
+//            val organization = events.getJSONObject(i).get("organization")
+//            val name = events.getJSONObject(i).get("name")
+//            val description = events.getJSONObject(i).get("description")
+////            val restrictions = events.getJSONObject(i).get("restrictions") as MutableList<*>
+//            val start_time = events.getJSONObject(i).get("start_time")
+//            val end_time = events.getJSONObject(i).get("end_time")
+//            val location = events.getJSONObject(i).get("location")
+//            //val calendar_link = events.getJSONObject(i).get("calendar_link")
+//            //val tags = events.getJSONObject(i).get("tags")
+//            //val passed = events.getJSONObject(i).get("passed")
+//            val photo = events.getJSONObject(i).get("photo")
+//            //val original_link = events.getJSONObject(i).get("original_link")
+//            val date = events.getJSONObject(i).get("date")
 
 //            Log.d("test", eventId.toString())
 //            Log.d("test", organization.toString())
@@ -182,60 +264,10 @@ class ForYouFragment : Fragment() {
         //Log.d("test", ""+outputJsonString)
 
 
-        recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-
-        auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
-        if(user != null){
-            val preferences = this.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
-            var temp: MutableSet<String> = mutableSetOf<String>()
-            var clickedPref: Set<String> = preferences.getStringSet(user.email, temp) as Set<String>
-
-            Log.d("pref:", clickedPref.toString())
-            // sort event list with events that have a matching tag higher
-
-            var eventListFrequency: MutableList<String> = mutableListOf<String>()
-
-            for(event in eventList) {
-                eventListFrequency.add(event.eventId)
-            }
-
-            for(tag in clickedPref) {
-                for(event in eventList){
-                    val eventTags = event.tags
-                    for(eventTag in eventTags){
-                        if(tag.lowercase().equals(eventTag.lowercase())){
-                            eventListFrequency.add(event.eventId)
-                            break
-                        }
-                    }
-                }
-            }
+        //recyclerView = view.findViewById(R.id.recyclerView)
+        //recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
 
-
-            val comparator = compareByDescending<Map.Entry<String, Int>> { it.value }
-                .thenBy { it.key }
-            var eventIDSorted = eventListFrequency.groupingBy { it }.eachCount().entries
-                .sortedWith(comparator).map { it.key }
-
-            var eventListSorted: MutableList<Event> = mutableListOf<Event>()
-            for(id in eventIDSorted){
-                for(event in eventList){
-                    if(event.eventId.equals(id)){
-                        eventListSorted.add(event)
-                        break
-                    }
-                }
-            }
-
-            viewAdapter = RecyclerViewAdapter(10, eventListSorted)
-        }
-        else {
-            viewAdapter = RecyclerViewAdapter(10, eventList)
-        }
-        recyclerView.adapter = viewAdapter
 
 
         return view
@@ -276,13 +308,15 @@ class ForYouFragment : Fragment() {
             }
 
             var stringGenerated = events[position].photo
-            val imgId = context!!.resources.getIdentifier(
-                "$stringGenerated",
-                "drawable",
-                context!!.packageName
-            )
-            holder.view.findViewById<ImageView>(R.id.imageView)
-                .setImageResource(imgId) //= events[position].photo
+            var thisimg = holder.view.findViewById<ImageView>(R.id.imageView)
+            Picasso.with(view!!.context).load(stringGenerated).into(thisimg)
+//            val imgId = context!!.resources.getIdentifier(
+//                "$stringGenerated",
+//                "drawable",
+//                context!!.packageName
+//            )
+//            holder.view.findViewById<ImageView>(R.id.imageView)
+//                .setImageResource(imgId) //= events[position].photo
 
             //val calendar = context!!.resources.getIdentifier("calendar", "drawable", context!!.packageName)
             //holder.view.findViewById<ImageView>(R.id.calendarButton).setImageResource(calendar) //= events[position].photo
@@ -303,7 +337,7 @@ class ForYouFragment : Fragment() {
                         "location" to events[position].location,
                         "position" to position,
                         "description" to events[position].description,
-                        "image" to imgId
+                        "image" to stringGenerated
                     )
                 )
 

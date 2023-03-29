@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import  androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentEventBinding
+import com.squareup.picasso.Picasso
 import java.util.*
 
 class EventFragment : Fragment() {
@@ -25,7 +26,7 @@ class EventFragment : Fragment() {
     var position: Int = 0
     var description: String? = null
     //    var restrictions: MutableList<String>? = null
-    var imageID: Int = 0
+    var imageID: String? = null
 //    var event: Event? = null
 
 
@@ -50,7 +51,7 @@ class EventFragment : Fragment() {
         position = this.requireArguments().getInt("position")
         description = this.arguments?.getString("description")
 //        restrictions = this.arguments?.get("restrictions") as MutableList<String>
-        imageID = this.requireArguments().getInt("image")
+        imageID = this.requireArguments().getString("image")
 //        event = this.arguments?.get("event") as Event
 
         binding.eventNameText.text = eventName
@@ -59,7 +60,8 @@ class EventFragment : Fragment() {
         binding.timeText.text = startTime + " - " + endTime
         binding.locationText.text = location
         binding.descriptionParagraphText.text = description
-        binding.eventImage.setImageResource(imageID)
+        Picasso.with(view!!.context).load(imageID).into(binding.eventImage)
+        //binding.eventImage.setImageResource(imageID)
 
 //        var restrictionsString = "Only: "
 ////        Log.d("", "Out restrictions, string = " + restrictions.toString())
