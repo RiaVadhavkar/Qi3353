@@ -289,7 +289,9 @@ class ForYouFragment : Fragment() {
                         "location" to events[position].location,
                         "position" to position,
                         "description" to events[position].description,
-                        "image" to stringGenerated
+                        "image" to stringGenerated,
+                        "rawStartTime" to events[position].startRaw,
+                        "rawEndTime" to events[position].endRaw
                     )
                 )
 
