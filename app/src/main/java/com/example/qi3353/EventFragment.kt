@@ -6,30 +6,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import  androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentEventBinding
-import com.example.qi3353.databinding.FragmentForYouBinding
 import java.util.*
-class EventFragment : Fragment() {
 
+class EventFragment : Fragment() {
 
     private lateinit var binding: FragmentEventBinding
 
-    var eventName:String? = null
-    var date:String? = null
+    // event name, organization name, date, start time, end time, location, restrictions, description
+    var eventName: String? = null
+    var orgName: String? = null
+    var date: String? = null
     var startTime: String? = null
-    var endTime:String? = null
+    var endTime: String? = null
     var location: String? = null
     var position: Int = 0
     var description: String? = null
-//    var restrictions: MutableList<String>? = null
+    //    var restrictions: MutableList<String>? = null
     var imageID: Int = 0
 //    var event: Event? = null
-    // event name, date, start time, end time, location, restrictions, description
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +42,8 @@ class EventFragment : Fragment() {
         var view = binding.root
 
         eventName = this.arguments?.getString("eventName")
-        date =  this.arguments?.getString("date")
+        orgName = this.arguments?.getString("orgName")
+        date = this.arguments?.getString("date")
         startTime = this.arguments?.getString("startTime")
         endTime = this.arguments?.getString("endTime")
         location = this.arguments?.getString("location")
@@ -50,6 +54,7 @@ class EventFragment : Fragment() {
 //        event = this.arguments?.get("event") as Event
 
         binding.eventNameText.text = eventName
+        binding.organizationNameText.text = orgName
         binding.dateText.text = date
         binding.timeText.text = startTime + " - " + endTime
         binding.locationText.text = location

@@ -76,6 +76,7 @@ class SearchFragment : Fragment() {
             eventList.add(
                 Event(
                     events.getJSONObject(i).get("eventId").toString(),
+                    events.getJSONObject(i).get("organization").toString(),
                     events.getJSONObject(i).get("name").toString(),
                     events.getJSONObject(i).get("description").toString(),
 //                    restrictionsList,
