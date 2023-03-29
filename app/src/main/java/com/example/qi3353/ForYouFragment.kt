@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -37,8 +38,7 @@ class ForYouFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     lateinit var viewAdapter: RecyclerView.Adapter<*>
-    var eventList: MutableList<Event> = mutableListOf()
-    var eventsList: MutableList<Event> = mutableListOf()
+    //var eventList: MutableList<Event> = mutableListOf()
 
 
     override fun onCreateView(
@@ -48,6 +48,9 @@ class ForYouFragment : Fragment() {
         // Sets up binding.
         binding = FragmentForYouBinding.inflate(inflater, container, false)
         var view = binding.root
+        val model = ViewModelProvider(requireActivity()).get(EventViewModel::class.java)
+
+
 
         val prevFragId = findNavController().previousBackStackEntry!!.destination.id
 
@@ -57,117 +60,61 @@ class ForYouFragment : Fragment() {
             }
         }
 
-        database = Firebase.database
+        model.fetchEventList()
+        model.eventListLiveData.observe(viewLifecycleOwner){ eventList ->
+            recyclerView = view.findViewById(R.id.recyclerView)
+            recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            auth = FirebaseAuth.getInstance()
+            val user = auth.currentUser
+            if(user != null){
+                val preferences = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+                var temp: MutableSet<String> = mutableSetOf<String>()
+                var clickedPref: Set<String> = preferences.getStringSet(user.email, temp) as Set<String>
 
-        val myRef = database.reference.child("Events")
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                eventList = mutableListOf<Event>()
-                var tagList = mutableListOf<String>()
+                Log.d("pref:", clickedPref.toString())
+                // sort event list with events that have a matching tag higher
 
-                for (elem in dataSnapshot.children) {
-                    //elem.getValue(String::class.java)
-                    //JSONObject(elem.toString()).get("id").toString()
-                    //eventList.add(elem.getValue(Event::class.java)!!)
-                    //Log.d("aafds", JSONObject(elem.getValue(String::class.java)!!).get("eventId").toString())
-//                    Log.d("blalal", JSONObject(elem.getValue(String::class.java)!!).get("eventId").toString())
-                    //JSONArray(JSONObject(elem.getValue(String::class.java)!!).get("tags"))[0].toString()
-                    val tagsList = mutableListOf<String>()
+                var eventListFrequency: MutableList<String> = mutableListOf<String>()
 
-                    var jsonArray = JSONObject(elem.getValue(String::class.java)!!).getJSONArray("tags")
-                    if (jsonArray != null) {
-                        for (i in 0 until jsonArray.length()) {
-                            if (jsonArray[i].toString() != "null") {
-                                tagsList.add(jsonArray[i].toString())
-                                //Log.d("test",jsonArray[i].toString())
-                            }
-                        }
-                    }
-//                    Log.d("test",
-//                        JSONObject(elem.getValue(String::class.java)!!).getJSONArray("tags")[0].toString()
-//                    )
-                    eventList.add(
-                        Event(
-                            JSONObject(elem.getValue(String::class.java)!!).get("eventId").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("organization").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("name").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("description").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("start_time").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("end_time").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("location").toString(),
-                            tagsList,
-                            JSONObject(elem.getValue(String::class.java)!!).get("photo").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("original_link").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("date").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("startRaw").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("endRaw").toString()
-                        )
-                    )
+                for(event in eventList) {
+                    eventListFrequency.add(event.eventId)
                 }
-                recyclerView = view.findViewById(R.id.recyclerView)
-                recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-                auth = FirebaseAuth.getInstance()
-                val user = auth.currentUser
-                if(user != null){
-                    val preferences = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
-                    var temp: MutableSet<String> = mutableSetOf<String>()
-                    var clickedPref: Set<String> = preferences.getStringSet(user.email, temp) as Set<String>
-
-                    Log.d("pref:", clickedPref.toString())
-                    // sort event list with events that have a matching tag higher
-
-                    var eventListFrequency: MutableList<String> = mutableListOf<String>()
-
-                    for(event in eventList) {
-                        eventListFrequency.add(event.eventId)
-                    }
-
-                    for(tag in clickedPref) {
-                        for(event in eventList){
-                            val eventTags = event.tags
-                            for(eventTag in eventTags){
-                                if(tag.lowercase().equals(eventTag.lowercase())){
-                                    eventListFrequency.add(event.eventId)
-                                    break
-                                }
-                            }
-                        }
-                    }
 
 
-
-                    val comparator = compareByDescending<Map.Entry<String, Int>> { it.value }
-                        .thenBy { it.key }
-                    var eventIDSorted = eventListFrequency.groupingBy { it }.eachCount().entries
-                        .sortedWith(comparator).map { it.key }
-
-                    var eventListSorted: MutableList<Event> = mutableListOf<Event>()
-                    for(id in eventIDSorted){
-                        for(event in eventList){
-                            if(event.eventId.equals(id)){
-                                eventListSorted.add(event)
+                for(tag in clickedPref) {
+                    for(event in eventList){
+                        val eventTags = event.tags
+                        for(eventTag in eventTags){
+                            if(tag.lowercase().equals(eventTag.lowercase())){
+                                eventListFrequency.add(event.eventId)
                                 break
                             }
                         }
                     }
-
-                    viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
                 }
-                else {
-                    viewAdapter = RecyclerViewAdapter(eventList.size, eventList)
+
+                val comparator = compareByDescending<Map.Entry<String, Int>> { it.value }
+                    .thenBy { it.key }
+                var eventIDSorted = eventListFrequency.groupingBy { it }.eachCount().entries
+                    .sortedWith(comparator).map { it.key }
+
+                var eventListSorted: MutableList<Event> = mutableListOf<Event>()
+                for(id in eventIDSorted){
+                    for(event in eventList){
+                        if(event.eventId.equals(id)){
+                            eventListSorted.add(event)
+                            break
+                        }
+                    }
                 }
-                recyclerView.adapter = viewAdapter
 
+                viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w("Test", "Failed to read value.", error.toException())
+            else {
+                viewAdapter = RecyclerViewAdapter(eventList.size, eventList)
             }
-
-        })
+            recyclerView.adapter = viewAdapter
+        }
 
         // Bottom navigation buttons.
         binding.navigation.searchBtn.setOnClickListener {
@@ -177,7 +124,7 @@ class ForYouFragment : Fragment() {
             view.findNavController().navigate(R.id.action_forYouFragment_to_settingsFragment)
         }
 
-        eventList.clear()
+        //eventList.clear()
 
         val jsonData = view.resources.openRawResource(
             view.resources.getIdentifier(

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qi3353.databinding.FragmentForYouBinding
 import com.example.qi3353.databinding.FragmentSearchResultBinding
+import com.squareup.picasso.Picasso
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -101,13 +102,8 @@ class SearchResultFragment : Fragment() {
             }
 
             var stringGenerated = events[position].photo
-            val imgId = context!!.resources.getIdentifier(
-                "$stringGenerated",
-                "drawable",
-                context!!.packageName
-            )
-            holder.view.findViewById<ImageView>(R.id.imageView)
-                .setImageResource(imgId) //= events[position].photo
+            var thisimg = holder.view.findViewById<ImageView>(R.id.imageView)
+            Picasso.with(view!!.context).load(stringGenerated).into(thisimg)
 
             //val calendar = context!!.resources.getIdentifier("calendar", "drawable", context!!.packageName)
             //holder.view.findViewById<ImageView>(R.id.calendarButton).setImageResource(calendar) //= events[position].photo
@@ -127,7 +123,7 @@ class SearchResultFragment : Fragment() {
                         "location" to events[position].location,
                         "position" to position,
                         "description" to events[position].description,
-                        "image" to imgId
+                        "image" to stringGenerated
                     )
                 )
 
