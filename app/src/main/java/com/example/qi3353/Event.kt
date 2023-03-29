@@ -2,7 +2,7 @@ package com.example.qi3353
 
 data class Event(
     var eventId: String,
-    //var organization: String, TODO WILL USE
+    var organization: String, //TODO WILL USE
     var name: String,
     var description: String,
 //    var restrictions:  MutableList<String>, // TODO DELETE

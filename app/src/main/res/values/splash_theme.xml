@@ -5,10 +5,5 @@
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/splashscreen</item>
         <item name="postSplashScreenTheme">@style/Theme.Qi3353</item>
-
-<!--        &lt;!&ndash; Status bar and Nav bar configs &ndash;&gt;-->
-<!--        <item name="android:statusBarColor">@color/white</item>-->
-<!--        <item name="android:navigationBarColor">@color/white</item>-->
-<!--        <item name="android:windowLightStatusBar">true</item>-->
     </style>
 </resources>

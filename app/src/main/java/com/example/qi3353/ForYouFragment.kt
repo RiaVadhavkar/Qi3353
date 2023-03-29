@@ -133,6 +133,7 @@ class ForYouFragment : Fragment() {
             eventList.add(
                 Event(
                     events.getJSONObject(i).get("eventId").toString(),
+                    events.getJSONObject(i).get("organization").toString(),
                     events.getJSONObject(i).get("name").toString(),
                     events.getJSONObject(i).get("description").toString(),
 //                    restrictionsList,
@@ -149,7 +150,7 @@ class ForYouFragment : Fragment() {
 
 
             val eventId = events.getJSONObject(i).get("eventId")
-            //val organization = events.getJSONObject(i).get("organization")
+            val organization = events.getJSONObject(i).get("organization")
             val name = events.getJSONObject(i).get("name")
             val description = events.getJSONObject(i).get("description")
 //            val restrictions = events.getJSONObject(i).get("restrictions") as MutableList<*>
@@ -162,21 +163,20 @@ class ForYouFragment : Fragment() {
             val photo = events.getJSONObject(i).get("photo")
             //val original_link = events.getJSONObject(i).get("original_link")
             val date = events.getJSONObject(i).get("date")
-/*
-            Log.d("test", eventId.toString())
-            Log.d("test", organization.toString())
-            Log.d("test", name.toString())
-            Log.d("test", description.toString())
-            Log.d("test", restrictions.toString())
-            Log.d("test", start_time.toString())
-            Log.d("test", end_time.toString())
-            Log.d("test", location.toString())
-            Log.d("test", calendar_link.toString())
-            Log.d("test", tags.toString())
-            Log.d("test", passed.toString())
-            Log.d("test", photo.toString())
-            Log.d("test", original_link.toString())
-*/
+
+//            Log.d("test", eventId.toString())
+//            Log.d("test", organization.toString())
+//            Log.d("test", name.toString())
+//            Log.d("test", description.toString())
+////            Log.d("test", restrictions.toString())
+//            Log.d("test", start_time.toString())
+//            Log.d("test", end_time.toString())
+//            Log.d("test", location.toString())
+////            Log.d("test", calendar_link.toString())
+////            Log.d("test", tags.toString())
+////            Log.d("test", passed.toString())
+//            Log.d("test", photo.toString())
+////            Log.d("test", original_link.toString())
         }
 
         //Log.d("test", ""+outputJsonString)
@@ -264,7 +264,6 @@ class ForYouFragment : Fragment() {
              }
              */
             holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name
-
             holder.view.findViewById<TextView>(R.id.date).text = events[position].date
             holder.view.findViewById<TextView>(R.id.time).text =
                 events[position].start_time + " - " + events[position].end_time
@@ -297,6 +296,7 @@ class ForYouFragment : Fragment() {
                     R.id.action_forYouFragment_to_eventFragment,
                     bundleOf(
                         "eventName" to events[position].name,
+                        "orgName" to events[position].organization,
                         "date" to events[position].date,
                         "startTime" to events[position].start_time,
                         "endTime" to events[position].end_time,

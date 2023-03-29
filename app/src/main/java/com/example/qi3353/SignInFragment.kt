@@ -88,7 +88,7 @@ class SignInFragment : Fragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                Toast.makeText(activity, "Sign in successful.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Sign In Successful", Toast.LENGTH_SHORT).show()
                 if (it.result.additionalUserInfo!!.isNewUser) {
                     view.findNavController().navigate(R.id.action_signInFragment_to_preferencesFragment)
                 }
