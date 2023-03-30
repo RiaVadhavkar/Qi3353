@@ -61,6 +61,7 @@ class EventFragment : Fragment() {
         var view = binding.root
 
         auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
 
         eventName = this.arguments?.getString("eventName")
         orgName = this.arguments?.getString("orgName")
@@ -111,22 +112,20 @@ class EventFragment : Fragment() {
         binding.navigation.settingsBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_eventFragment_to_settingsFragment)
         }
-        binding.addToCalendarButton.setOnClickListener {
-            addToCalendar()
+        if (user != null) {
+            binding.addToCalendarButton.setOnClickListener {
+                addToCalendar(user)
+            }
+        }
+        else {
+            binding.addToCalendarButton.isEnabled = false
         }
 
 
         return view
     }
 
-    private fun addToCalendar() {
-        val user = auth.currentUser
-        if (user != null) {
-            addEvent(user)
-        }
-    }
-
-    private fun addEvent(user: FirebaseUser) {
+    private fun addToCalendar(user: FirebaseUser) {
         val credential = GoogleAccountCredential.usingOAuth2(
             context, listOf(CalendarScopes.CALENDAR)
         ).setSelectedAccountName(user.email)

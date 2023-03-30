@@ -111,6 +111,7 @@ class ForYouFragment : Fragment() {
                 viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
             }
             else {
+                binding.title.text = "Home"
                 viewAdapter = RecyclerViewAdapter(eventList.size, eventList)
             }
             recyclerView.adapter = viewAdapter

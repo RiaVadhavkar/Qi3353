@@ -38,6 +38,12 @@ class SettingsFragment : Fragment() {
         var notificationSwitch = view.findViewById<Switch>(R.id.notificationSwitch)
 
         auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+
+        if (user == null) {
+            binding.logoutButton.text = "Sign In"
+            binding.preferencesButton.visibility = View.GONE
+        }
 
         val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -56,8 +62,10 @@ class SettingsFragment : Fragment() {
             view.findNavController().navigate(R.id.action_settingsFragment_to_preferencesFragment)
         }
         binding.logoutButton.setOnClickListener {
-            auth.signOut()
-            client.signOut()
+            if (user != null) {
+                auth.signOut()
+                client.signOut()
+            }
             view.findNavController().navigate(R.id.action_settingsFragment_to_signInFragment)
         }
 
