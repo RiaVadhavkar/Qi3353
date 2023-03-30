@@ -9,8 +9,9 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+        android:label = "@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Qi3353"
+        android:theme="@style/Theme.Qi3353.Splash"
         tools:targetApi="31">
 
         <service android:name=".FirebaseService"

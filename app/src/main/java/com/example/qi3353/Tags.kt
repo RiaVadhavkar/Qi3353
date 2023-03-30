@@ -22,4 +22,5 @@ enum class Tags {
     HEALTH,
     GRADS,
     ALUMNI,
+    MISCELLANEOUS,
 }

@@ -37,6 +37,14 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/organizationNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Organization Name"
+            android:textSize="20sp" />
+
+        <TextView
             android:id="@+id/dateText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

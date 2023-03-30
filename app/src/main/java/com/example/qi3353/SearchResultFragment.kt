@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qi3353.databinding.FragmentForYouBinding
 import com.example.qi3353.databinding.FragmentSearchResultBinding
+import com.squareup.picasso.Picasso
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -87,27 +88,26 @@ class SearchResultFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name
-
+            if (events[position].name.length > 20){
+                holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name.substring(0, 17) + "..."
+            }
+            else {
+                holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name
+            }
             holder.view.findViewById<TextView>(R.id.date).text = events[position].date
             holder.view.findViewById<TextView>(R.id.time).text =
                 events[position].start_time + " - " + events[position].end_time
             holder.view.findViewById<TextView>(R.id.location).text = events[position].location
-            if (events[position].location.length > 20) {
+            if (events[position].location.length > 30) {
                 holder.view.findViewById<TextView>(R.id.location).text =
-                    events[position].location.substring(0, 17) + "..."
+                    events[position].location.substring(0, 27) + "..."
             } else {
                 holder.view.findViewById<TextView>(R.id.location).text = events[position].location
             }
 
             var stringGenerated = events[position].photo
-            val imgId = context!!.resources.getIdentifier(
-                "$stringGenerated",
-                "drawable",
-                context!!.packageName
-            )
-            holder.view.findViewById<ImageView>(R.id.imageView)
-                .setImageResource(imgId) //= events[position].photo
+            var thisimg = holder.view.findViewById<ImageView>(R.id.imageView)
+            Picasso.with(view!!.context).load(stringGenerated).into(thisimg)
 
             //val calendar = context!!.resources.getIdentifier("calendar", "drawable", context!!.packageName)
             //holder.view.findViewById<ImageView>(R.id.calendarButton).setImageResource(calendar) //= events[position].photo
@@ -127,7 +127,7 @@ class SearchResultFragment : Fragment() {
                         "location" to events[position].location,
                         "position" to position,
                         "description" to events[position].description,
-                        "image" to imgId
+                        "image" to stringGenerated
                     )
                 )
 

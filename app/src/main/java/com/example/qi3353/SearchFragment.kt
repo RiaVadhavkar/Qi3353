@@ -10,6 +10,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,58 +37,13 @@ class SearchFragment : Fragment() {
         // Sets up binding.
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         val view = binding.root
+        val model = ViewModelProvider(requireActivity()).get(EventViewModel::class.java)
 
-        eventList.clear()
+        //eventList.clear()
 
-        // getting data from json
-        val jsonData=view.resources.openRawResource(
-            view.resources.getIdentifier(
-                "dummydata",
-                "raw",
-                requireActivity().packageName
-            )
-        ).bufferedReader().use{it.readText()}
-        val outputJsonString= JSONObject(jsonData)
-
-
-        val events = outputJsonString.getJSONArray("events") as JSONArray
-        for (i in 0 until events.length()){
-//            val restrictionsList = mutableListOf<String>()
-
-//            var jsonArray = events.getJSONObject(i).getJSONArray("restrictions")
-//            Log.d("", "Strings: " + jsonArray.toString())
-//            if (jsonArray != null) {
-//                for (i in 0 until jsonArray.length()) {
-////                    Log.d("", "adding: " + jsonArray[i].toString())
-//                    restrictionsList.add(jsonArray[i].toString())
-//                }
-//            }
-
-            val tagsList = mutableListOf<String>()
-
-            var jsonArray = events.getJSONObject(i).getJSONArray("tags")
-            if (jsonArray != null) {
-                for (i in 0 until jsonArray.length()) {
-                    tagsList.add(jsonArray[i].toString())
-                }
-            }
-
-//            Log.d("", "tag list: " + tagsList.toString())
-            eventList.add(
-                Event(
-                    events.getJSONObject(i).get("eventId").toString(),
-                    events.getJSONObject(i).get("name").toString(),
-                    events.getJSONObject(i).get("description").toString(),
-//                    restrictionsList,
-                    events.getJSONObject(i).get("start_time").toString(),
-                    events.getJSONObject(i).get("end_time").toString(),
-                    events.getJSONObject(i).get("location").toString(),
-                    tagsList,
-                    events.getJSONObject(i).get("photo").toString(),
-                    events.getJSONObject(i).get("date").toString()
-                )
-            )
-
+        model.fetchEventList()
+        model.eventListLiveData.observe(viewLifecycleOwner) { modelList ->
+            eventList = modelList
         }
 
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
