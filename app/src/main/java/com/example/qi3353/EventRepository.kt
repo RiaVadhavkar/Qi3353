@@ -48,8 +48,6 @@ class EventRepository {
                             JSONObject(elem.getValue(String::class.java)!!).get("location").toString(),
                             tagsList,
                             JSONObject(elem.getValue(String::class.java)!!).get("photo").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("original_link")
-                                .toString(),
                             JSONObject(elem.getValue(String::class.java)!!).get("date").toString(),
                             JSONObject(elem.getValue(String::class.java)!!).get("startRaw").toString(),
                             JSONObject(elem.getValue(String::class.java)!!).get("endRaw").toString()

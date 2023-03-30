@@ -10,7 +10,6 @@ data class Event(
     var location: String,
     var tags:  MutableList<String>,
     var photo: String,
-    var original_link: String,
     var date: String,
     var startRaw: String,
     var endRaw: String
