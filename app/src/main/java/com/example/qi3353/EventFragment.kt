@@ -82,7 +82,7 @@ class EventFragment : Fragment() {
         binding.timeText.text = startTime + " - " + endTime
         binding.locationText.text = location
         binding.descriptionParagraphText.text = descr
-        Picasso.with(view!!.context).load(imageID).into(binding.eventImage)
+        Picasso.with(view!!.context).load(imageID).placeholder(requireContext().getResources().getDrawable(R.drawable.noimage)).error(requireContext().getResources().getDrawable(R.drawable.noimage)).into(binding.eventImage)
         //binding.eventImage.setImageResource(imageID)
 
 //        var restrictionsString = "Only: "

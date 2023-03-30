@@ -107,7 +107,7 @@ class SearchResultFragment : Fragment() {
 
             var stringGenerated = events[position].photo
             var thisimg = holder.view.findViewById<ImageView>(R.id.imageView)
-            Picasso.with(view!!.context).load(stringGenerated).into(thisimg)
+            Picasso.with(view!!.context).load(stringGenerated).placeholder(requireContext().getResources().getDrawable(R.drawable.noimage)).error(requireContext().getResources().getDrawable(R.drawable.noimage)).into(thisimg)
 
             //val calendar = context!!.resources.getIdentifier("calendar", "drawable", context!!.packageName)
             //holder.view.findViewById<ImageView>(R.id.calendarButton).setImageResource(calendar) //= events[position].photo

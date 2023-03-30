@@ -261,7 +261,7 @@ class ForYouFragment : Fragment() {
 
             var stringGenerated = events[position].photo
             var thisimg = holder.view.findViewById<ImageView>(R.id.imageView)
-            Picasso.with(view!!.context).load(stringGenerated).into(thisimg)
+            Picasso.with(view!!.context).load(stringGenerated).placeholder(context!!.getResources().getDrawable(R.drawable.noimage)).error(context!!.getResources().getDrawable(R.drawable.noimage)).into(thisimg)
 //            val imgId = context!!.resources.getIdentifier(
 //                "$stringGenerated",
 //                "drawable",
