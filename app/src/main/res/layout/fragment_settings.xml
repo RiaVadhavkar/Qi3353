@@ -17,7 +17,6 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/inter_extrabold"
             android:text="Settings"
-            android:textColor="@color/black"
             android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

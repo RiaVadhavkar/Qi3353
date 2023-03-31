@@ -16,7 +16,6 @@
         android:fontFamily="@font/inter_extrabold"
         android:text="For You"
         android:textAlignment="center"
-        android:textColor="@color/black"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/recyclerView"
