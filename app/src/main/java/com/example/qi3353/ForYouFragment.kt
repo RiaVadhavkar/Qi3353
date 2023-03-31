@@ -28,6 +28,8 @@ import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import org.json.JSONArray
 import org.json.JSONObject
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.stream.Collectors
 
 class ForYouFragment : Fragment() {
@@ -108,13 +110,18 @@ class ForYouFragment : Fragment() {
                     }
                 }
 
+                eventListSorted.sortBy { it.startRaw }
+
                 viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
             }
             else {
                 binding.title.text = "Home"
+                eventList.sortBy { it.startRaw }
+
                 viewAdapter = RecyclerViewAdapter(eventList.size, eventList)
             }
             recyclerView.adapter = viewAdapter
+
         }
 
         // Bottom navigation buttons.
