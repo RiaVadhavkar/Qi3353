@@ -73,7 +73,7 @@ class ForYouFragment : Fragment() {
                 var temp: MutableSet<String> = mutableSetOf<String>()
                 var clickedPref: Set<String> = preferences.getStringSet(user.email, temp) as Set<String>
 
-                Log.d("pref:", clickedPref.toString())
+//                Log.d("pref:", clickedPref.toString())
                 // sort event list with events that have a matching tag higher
 
                 var eventListFrequency: MutableList<String> = mutableListOf<String>()
@@ -84,10 +84,12 @@ class ForYouFragment : Fragment() {
 
 
                 for(tag in clickedPref) {
+//                    Log.d("tag: ", tag.lowercase())
                     for(event in eventList){
                         val eventTags = event.tags
                         for(eventTag in eventTags){
                             if(tag.lowercase().equals(eventTag.lowercase())){
+//                                Log.d("tag equals event tag: ", event.eventId + ", name: " + event.name)
                                 eventListFrequency.add(event.eventId)
                                 break
                             }
@@ -100,6 +102,11 @@ class ForYouFragment : Fragment() {
                 var eventIDSorted = eventListFrequency.groupingBy { it }.eachCount().entries
                     .sortedWith(comparator).map { it.key }
 
+//                if(!eventIDSorted.isEmpty()){
+//                    Log.d("eventIDSorted: ", eventIDSorted[0])
+//                }
+
+
                 var eventListSorted: MutableList<Event> = mutableListOf<Event>()
                 for(id in eventIDSorted){
                     for(event in eventList){
@@ -110,9 +117,16 @@ class ForYouFragment : Fragment() {
                     }
                 }
 
-                eventListSorted.sortBy { it.startRaw }
+                // no preferences
+                if(clickedPref.isEmpty()){
+                    eventListSorted.sortBy { it.startRaw }
+                }
 
                 viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
+//                if(!eventListSorted.isEmpty()){
+//                    Log.d("first event:", eventListSorted[0].name + ", id: " + eventListSorted[0].eventId)
+//                }
+
             }
             else {
                 binding.title.text = "Home"
