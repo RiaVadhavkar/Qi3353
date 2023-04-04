@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentSignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -54,6 +55,10 @@ class SignInFragment : Fragment() {
 
         binding.continueAsGuest.setOnClickListener {
             view.findNavController().navigate(R.id.action_signInFragment_to_forYouFragment)
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            // LEAVE EMPTY
         }
 
         return view
