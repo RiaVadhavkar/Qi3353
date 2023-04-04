@@ -14,7 +14,6 @@
         android:fontFamily="@font/inter_extrabold"
         android:gravity="center"
         android:text="Preferences"
-        android:textColor="@color/black"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/preferenceScrollView"
