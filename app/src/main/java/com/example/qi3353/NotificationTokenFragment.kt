@@ -20,6 +20,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+import org.json.JSONObject
+
 const val TOPIC = "/topics/myTopic"
 
 class NotificationTokenFragment : Fragment() {
@@ -49,28 +51,55 @@ class NotificationTokenFragment : Fragment() {
     ): View? {
         binding = NotificationTokenBinding.inflate(inflater, container, false)
         var view = binding.root
-        binding.btnSend.setOnClickListener {
+        Log.e("test", "line 52")
+        //binding.btnSend.setOnClickListener {
             var title = "" //= "oh crap" //binding.etTitle.text.toString()
+            var message = ""
+            var isChanged = ""
             // Create the observer which updates the UI.
             //val nameObserver = Observer<MutableList<Event>> {
             //}
 
             // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
             //model.eventListLiveData.observe(this, nameObserver)
-
+            Log.e("test", "line 61")
             val firebaseDatabase = FirebaseDatabase.getInstance()
             val reference = firebaseDatabase.getReference()
-            reference.child("myTopic/topic-name")
+            reference.child("Events")//"myTopic/topic-name")
                 .addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         val children = dataSnapshot.children
 
                         children.forEach {
                             //Toast.makeText(activity, it.toString(), Toast.LENGTH_LONG).show()
+                            Log.e("test", "line 71")
 
                             val body = dataSnapshot.child("body").value.toString()
-                            title = dataSnapshot.child("title").value.toString()
+                            isChanged = JSONObject(it.getValue(String::class.java)!!).get("isNew").toString()
+                            if (isChanged == "yes") {
+                                //title = dataSnapshot.child("title").value.toString()
+                                title =
+                                    JSONObject(it.getValue(String::class.java)!!).get("organization")
+                                        .toString()
+                                message = JSONObject(it.getValue(String::class.java)!!).get("name")
+                                    .toString() + " is hosting an event!"
+                                isChanged = "no"
+                            }
+                        }
+                        //val message = binding.etMessage.text.toString()
+                        //demo key:
+                        // fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq
+                        val recipientToken = binding.etToken.text.toString()
 
+
+
+
+                        Log.e("test", "line 88")
+                        if (title.isNotEmpty() && message.isNotEmpty() && recipientToken.isNotEmpty()) {
+                            PushNotification(NotificationData(title, message), recipientToken).also {
+                                sendNotification(it)
+                                Log.e("test", "line 92")
+                            }
                         }
 
                     }
@@ -82,15 +111,10 @@ class NotificationTokenFragment : Fragment() {
                 }
                 )
 
-            val message = binding.etMessage.text.toString()
-            val recipientToken = binding.etToken.text.toString()
-            if (title.isNotEmpty() && message.isNotEmpty() && recipientToken.isNotEmpty()) {
-                PushNotification(NotificationData(title, message), recipientToken).also {
-                    sendNotification(it)
-                }
-            }
 
-        }
+
+
+        //}
 
 
         return view;
@@ -102,14 +126,18 @@ class NotificationTokenFragment : Fragment() {
             if(response.isSuccessful) {
                 Log.d(TAG, "Response: ${Gson().toJson(response)}")
 
+
             }
             else {
                 Log.e(TAG, response.errorBody().toString())
+                Log.e("test", "test else statement")
             }
         } catch(e: Exception) {
             Log.e(TAG, e.toString())
+            Log.e("test", "catch clause")
         }
     }
+
 
 }
 

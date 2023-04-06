@@ -16,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
@@ -45,7 +46,17 @@ class SettingsFragment : Fragment() {
             binding.preferencesButton.visibility = View.GONE
         }
 
-        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+
+        val preferences = view.getContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        var temp: Boolean = false
+        var preferencesList: Boolean =
+            preferences.getBoolean(FirebaseMessaging.getInstance().token.toString(), temp)
+
+        if (temp)
+        {
+            binding.notificationSwitch.isChecked = true
+        }
+            val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
@@ -89,7 +100,16 @@ class SettingsFragment : Fragment() {
         }
 
         notificationSwitch.setOnCheckedChangeListener { view, isChecked ->
+            var recipientToken = FirebaseMessaging.getInstance().token.toString()
             if (isChecked){
+                if(recipientToken.isNotEmpty()) {
+                    val preferences = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+                    var editor = preferences.edit()
+
+                    // "key: email", "value : set of preferences"
+                    editor.putBoolean (recipientToken, isChecked)
+                    editor.commit()
+                }
                 view.findNavController().navigate(R.id.action_settingsFragment_to_notificationTokenFragment);
             }
         }
