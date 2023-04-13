@@ -34,6 +34,49 @@ class EventRepository {
                             }
                         }
                     }
+                    var start = Integer.parseInt(JSONObject(elem.getValue(String::class.java)!!).get("start_time")
+                        .toString().substring(0, 2));
+                    var startTime : String = ""
+
+                    if (start == 12){
+                        startTime = start.toString() + JSONObject(elem.getValue(String::class.java)!!).get("start_time")
+                            .toString().substring(2) + " pm"
+                    }
+                    else if (start == 0) {
+                        startTime = "12" + JSONObject(elem.getValue(String::class.java)!!).get("start_time")
+                            .toString().substring(2) + " am"
+                    }
+                    else if (start > 12) {
+                        startTime = (start % 12).toString() + JSONObject(elem.getValue(String::class.java)!!).get("start_time")
+                            .toString().substring(2) + " pm"
+                    }
+                    else if (start < 12){
+                        startTime = start.toString() + JSONObject(elem.getValue(String::class.java)!!).get("start_time")
+                            .toString().substring(2) + " am"
+                    }
+
+                    var end = Integer.parseInt(JSONObject(elem.getValue(String::class.java)!!).get("end_time")
+                        .toString().substring(0, 2));
+                    var endTime : String = ""
+
+                    if (end == 12){
+                        endTime = end.toString() + JSONObject(elem.getValue(String::class.java)!!).get("end_time")
+                            .toString().substring(2) + " pm"
+                    }
+                    else if (end == 0) {
+                        endTime = "12" + JSONObject(elem.getValue(String::class.java)!!).get("end_time")
+                            .toString().substring(2) + " am"
+                    }
+                    else if (end > 12) {
+                        endTime = (end % 12).toString() + JSONObject(elem.getValue(String::class.java)!!).get("end_time")
+                            .toString().substring(2) + " pm"
+                    }
+                    else if (end < 12){
+                        endTime = end.toString() + JSONObject(elem.getValue(String::class.java)!!).get("end_time")
+                            .toString().substring(2) + " am"
+                    }
+
+
                     eventList.add(
                         Event(
                             JSONObject(elem.getValue(String::class.java)!!).get("eventId").toString(),
@@ -42,9 +85,8 @@ class EventRepository {
                             JSONObject(elem.getValue(String::class.java)!!).get("name").toString(),
                             JSONObject(elem.getValue(String::class.java)!!).get("description")
                                 .toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("start_time")
-                                .toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("end_time").toString(),
+                            startTime,
+                            endTime,
                             JSONObject(elem.getValue(String::class.java)!!).get("location").toString(),
                             tagsList,
                             JSONObject(elem.getValue(String::class.java)!!).get("photo").toString(),
