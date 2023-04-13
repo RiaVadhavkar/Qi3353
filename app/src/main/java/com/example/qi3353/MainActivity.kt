@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
         Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
 
-        val requester = PeriodicWorkRequest.Builder(NotificationWorker::class.java, 1, TimeUnit.DAYS).addTag("thisWorker").build()
+        //val requester = PeriodicWorkRequest.Builder(NotificationWorker::class.java, 1, TimeUnit.DAYS).addTag("thisWorker").build()
 
-        WorkManager.getInstance().enqueueUniquePeriodicWork("thisWorker",ExistingPeriodicWorkPolicy.REPLACE, requester)
+        //WorkManager.getInstance().enqueueUniquePeriodicWork("thisWorker",ExistingPeriodicWorkPolicy.REPLACE, requester)
         setContentView(R.layout.activity_main)
     }
 }
