@@ -9,6 +9,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.json.JSONObject
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class EventRepository {
     var eventList: MutableList<Event> = mutableListOf()
@@ -76,6 +78,17 @@ class EventRepository {
                             .toString().substring(2) + " am"
                     }
 
+                    var formatter = DateTimeFormatter.ofPattern("MMM dd, YYYY")
+                    var date = LocalDate.parse(JSONObject(elem.getValue(String::class.java)!!).get("date")
+                        .toString().substring(0, 10))
+                    var formattedDate = date.format(formatter)
+
+                    var formatter2 = DateTimeFormatter.ofPattern("MMM dd, YYYY")
+                    var date2 = LocalDate.parse(JSONObject(elem.getValue(String::class.java)!!).get("date")
+                        .toString().substring(13))
+                    var formattedDate2 = date2.format(formatter2)
+
+
 
                     eventList.add(
                         Event(
@@ -90,7 +103,7 @@ class EventRepository {
                             JSONObject(elem.getValue(String::class.java)!!).get("location").toString(),
                             tagsList,
                             JSONObject(elem.getValue(String::class.java)!!).get("photo").toString(),
-                            JSONObject(elem.getValue(String::class.java)!!).get("date").toString(),
+                            formattedDate + " - " + formattedDate2,
                             JSONObject(elem.getValue(String::class.java)!!).get("startRaw").toString(),
                             JSONObject(elem.getValue(String::class.java)!!).get("endRaw").toString()
                         )
