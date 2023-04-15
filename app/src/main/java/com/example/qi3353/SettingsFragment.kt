@@ -29,15 +29,28 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
+const val TOPIC = "/topics/myTopic"
+
+
 class SettingsFragment : Fragment() {
+    val TAG = "SettingsFragment"
+
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var client: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
+        FirebaseService.sharedPref = activity?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        FirebaseMessaging.getInstance().token.addOnSuccessListener {
+            FirebaseService.token = it
+            //binding.etToken.setText(it)
 
+
+        }
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -136,22 +149,35 @@ class SettingsFragment : Fragment() {
                         .addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
                                 val children = dataSnapshot.children
-
+                                //var stop = 0
+                                var changedEventCount = 0
                                 children.forEach {
                                     //Toast.makeText(activity, it.toString(), Toast.LENGTH_LONG).show()
+                                    //if (stop == 0) {
                                     Log.e("test", "line 71")
 
                                     val body = dataSnapshot.child("body").value.toString()
+                                    if (JSONObject(it.getValue(String::class.java)!!).has("isNew")) {
                                     isChanged = JSONObject(it.getValue(String::class.java)!!).get("isNew").toString()
                                     if (isChanged == "yes") {
                                         //title = dataSnapshot.child("title").value.toString()
-                                        title =
+                                        /*title =
                                             JSONObject(it.getValue(String::class.java)!!).get("organization")
                                                 .toString()
                                         message = JSONObject(it.getValue(String::class.java)!!).get("name")
-                                            .toString() + " is hosting an event!"
+                                            .toString() + " is hosting an event!"*/
+                                        title = "Qi3353 Has New Events"
+                                        message = "" + changedEventCount + " new events have been added!"
                                         isChanged = "no"
+                                        //stop = 1
+                                        changedEventCount = changedEventCount + 1
+
                                     }
+                                    }
+                                //}
+
+
+
                                 }
                                 //val message = binding.etMessage.text.toString()
                                 //demo key:
@@ -178,7 +204,7 @@ class SettingsFragment : Fragment() {
                         }
                         )
                 }
-                view.findNavController().navigate(R.id.action_settingsFragment_to_notificationTokenFragment);
+                //view.findNavController().navigate(R.id.action_settingsFragment_to_notificationTokenFragment);
             }
         }
 
