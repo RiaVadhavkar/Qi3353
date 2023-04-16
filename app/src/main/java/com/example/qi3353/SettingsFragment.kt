@@ -431,8 +431,7 @@ class SettingsFragment : Fragment() {
                                 //demo key:
                                 // fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq
                                 //val recipientToken = binding.etToken.text.toString()
-                                val recipientToken = "fCMEZJKPTCG8bmePLsc_Tu:APA91bE8R3mdvPCLJMLGSwagmeSB9QJksdA9VKwSy45-nJUxrAkkJqTmj8UTjWh9gflOgif6SuOrKepaJZyewLsd-XDfj5O1rWuT5JYJqujUU0XUUoM_xaJG52u60P4s_5uggNQAz1kF"
-                                //"fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq"
+                                val recipientToken = "fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq"
 
 
 
