@@ -1,17 +1,15 @@
 package com.example.qi3353
 
-import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.CompoundButton
-import android.widget.Switch
+import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentSettingsBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -29,6 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
+
 const val TOPIC = "/topics/myTopic"
 
 
@@ -38,13 +37,23 @@ class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var client: GoogleSignInClient
+    private lateinit var notificationSwitch: Switch //= binding.notificationSwitch
+    private lateinit var sharedPrefs: SharedPreferences
 
+    var switchState2 = false
+
+    //private var temp: Boolean = false
+    //private var clickedPref: Boolean = binding.notificationSwitch.isChecked()
+    //private var temp: Boolean = false
+    //private var preferencesList: Boolean =
+    //    getBoolean(FirebaseMessaging.getInstance().token.toString(), temp)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseService.sharedPref = activity?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
         FirebaseMessaging.getInstance().token.addOnSuccessListener {
             FirebaseService.token = it
             //binding.etToken.setText(it)
+
 
 
         }
@@ -60,8 +69,8 @@ class SettingsFragment : Fragment() {
 
         var view = binding.root
 
-        var notificationSwitch = view.findViewById<Switch>(R.id.notificationSwitch)
-
+        notificationSwitch = view.findViewById<Switch>(R.id.notificationSwitch)
+        //temp = true
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
 
@@ -70,16 +79,32 @@ class SettingsFragment : Fragment() {
             binding.preferencesButton.visibility = View.GONE
         }
 
+        sharedPrefs = view.context.getSharedPreferences("com.example.qi3353", Context.MODE_PRIVATE)
+        notificationSwitch.setChecked(sharedPrefs.getBoolean("isChecked", false))
+        switchState2 = sharedPrefs.getBoolean("isChecked", false);
 
-        val preferences = view.getContext().getSharedPreferences("pref", Context.MODE_PRIVATE)
-        var temp: Boolean = false
-        var preferencesList: Boolean =
-            preferences.getBoolean(FirebaseMessaging.getInstance().token.toString(), temp)
+        //var preferencesList: Boolean =
+            //preferences.getBoolean(FirebaseMessaging.getInstance().token.toString(), temp)
 
-        if (temp)
+        /*if (temp)
         {
-            binding.notificationSwitch.isChecked = true
-        }
+            notificationSwitch.isChecked = true
+        }*/
+        /*preferences = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        var editor = preferences.edit()
+
+        // "key: email", "value : set of preferences"
+        editor.putBoolean(recipientToken, true)
+        editor.commit()*/
+        //notificationSwitch.setOnClickListener(View.OnClickListener {
+            /*val editor: SharedPreferences.Editor = preferences.edit()
+            editor.putBoolean("notiftoggleButton", notificationSwitch.isChecked())
+            //temp = true
+            editor.commit()*/
+        //})
+        //notificationSwitch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+
+        //})
             val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -125,14 +150,23 @@ class SettingsFragment : Fragment() {
 
         notificationSwitch.setOnCheckedChangeListener { view, isChecked ->
             var recipientToken = FirebaseMessaging.getInstance().token.toString()
+
             if (isChecked){
+                    val editor = sharedPrefs.edit()
+                    editor.putBoolean("isChecked", true)
+                    editor.commit()
+                    switchState2 = true
+
+
+                //temp = true
                 if(recipientToken.isNotEmpty()) {
-                    val preferences = requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
-                    var editor = preferences.edit()
+                    //preferences = requireActivity().getSharedPreferences("isChecked", Context.MODE_PRIVATE)
+                    //var editor = preferences.edit()
 
                     // "key: email", "value : set of preferences"
-                    editor.putBoolean (recipientToken, isChecked)
-                    editor.commit()
+                    //editor.putBoolean(recipientToken, isChecked)
+                    //editor.putBoolean("isChecked", true).apply()
+                    //editor.commit()
                     var title = "" //= "oh crap" //binding.etTitle.text.toString()
                     var message = ""
                     var isChanged = ""
@@ -183,7 +217,8 @@ class SettingsFragment : Fragment() {
                                 //demo key:
                                 // fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq
                                 //val recipientToken = binding.etToken.text.toString()
-                                val recipientToken = "fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq"
+                                val recipientToken = "fCMEZJKPTCG8bmePLsc_Tu:APA91bE8R3mdvPCLJMLGSwagmeSB9QJksdA9VKwSy45-nJUxrAkkJqTmj8UTjWh9gflOgif6SuOrKepaJZyewLsd-XDfj5O1rWuT5JYJqujUU0XUUoM_xaJG52u60P4s_5uggNQAz1kF"
+                                //"fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq"
 
 
 
@@ -205,6 +240,14 @@ class SettingsFragment : Fragment() {
                         )
                 }
                 //view.findNavController().navigate(R.id.action_settingsFragment_to_notificationTokenFragment);
+            }
+            else {
+                val editor: SharedPreferences.Editor =
+                    view.context.getSharedPreferences("com.example.qi3353", MODE_PRIVATE).edit()
+                editor.putBoolean("isChecked", false)
+                editor.commit()
+                switchState2 = false
+
             }
         }
 
