@@ -26,6 +26,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import java.time.LocalDateTime
+import java.time.ZonedDateTime
+import java.time.temporal.ChronoUnit
 
 
 const val TOPIC = "/topics/myTopic"
@@ -38,9 +41,15 @@ class SettingsFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var client: GoogleSignInClient
     private lateinit var notificationSwitch: Switch //= binding.notificationSwitch
+    private lateinit var reminderSwitch: Switch //= binding.notificationSwitch
+    private lateinit var spinner: Spinner
+
     private lateinit var sharedPrefs: SharedPreferences
 
     var switchState2 = false
+    var switchState3 = false
+    var timeDiff = 1800
+    var selectedState = 0
 
     //private var temp: Boolean = false
     //private var clickedPref: Boolean = binding.notificationSwitch.isChecked()
@@ -70,6 +79,9 @@ class SettingsFragment : Fragment() {
         var view = binding.root
 
         notificationSwitch = view.findViewById<Switch>(R.id.notificationSwitch)
+        reminderSwitch = view.findViewById<Switch>(R.id.reminderSwitch)
+        spinner = view.findViewById<Spinner>(R.id.reminderSpinner)
+
         //temp = true
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
@@ -83,6 +95,11 @@ class SettingsFragment : Fragment() {
         notificationSwitch.setChecked(sharedPrefs.getBoolean("isChecked", false))
         switchState2 = sharedPrefs.getBoolean("isChecked", false);
 
+        reminderSwitch.setChecked(sharedPrefs.getBoolean("isChecked1", false))
+        switchState3 = sharedPrefs.getBoolean("isChecked1", false);
+
+        spinner.setSelection(sharedPrefs.getInt("selected", 0));
+        selectedState = sharedPrefs.getInt("selected", 0)
         //var preferencesList: Boolean =
             //preferences.getBoolean(FirebaseMessaging.getInstance().token.toString(), temp)
 
@@ -139,14 +156,90 @@ class SettingsFragment : Fragment() {
             spinner.adapter = adapter
         }
 
-        spinner.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+        spinner.setSelection(getPersistedItem());
+        spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                itemId: Long
+            ) {
+                setPersistedItem(position)
+                if(position == 2) {
+                    timeDiff = 86400
+                    val editor = sharedPrefs.edit()
+                    editor.putInt("selected", 2)
+                    editor.commit()
+                    selectedState = 2
+
+
+                    //Log.e("text", "one day selected")
+                }
+
+                if(position == 1) {
+                    timeDiff = 3600
+                    val editor = sharedPrefs.edit()
+                    editor.putInt("selected", 1)
+                    editor.commit()
+                    selectedState = 1
+                    //Log.e("text", "one hour selected")
+
+                }
+                else {
+                    timeDiff = 1800
+                    val editor = sharedPrefs.edit()
+                    editor.putInt("selected", 0)
+                    editor.commit()
+                    selectedState = 0
+                }
             }
 
-            override fun onNothingSelected(adapterView: AdapterView<*>?) {
+            override fun onNothingSelected(arg0: AdapterView<*>?) {
+                // TODO Auto-generated method stub
             }
-        }
+        })
+
+//        spinner.onItemSelectedListener = object :
+//            AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+//                if(pos == 2) {
+//                    timeDiff = 86400
+//                    val editor = sharedPrefs.edit()
+//                    editor.putInt("selected", 2)
+//                    editor.commit()
+//                    selectedState = 2
+//
+//
+//                    //Log.e("text", "one day selected")
+//                }
+//
+//                if(pos == 1) {
+//                    timeDiff = 3600
+//                    val editor = sharedPrefs.edit()
+//                    editor.putInt("selected", 1)
+//                    editor.commit()
+//                    selectedState = 1
+//                    //Log.e("text", "one hour selected")
+//
+//                }
+//                else {
+//                    timeDiff = 1800
+//                    val editor = sharedPrefs.edit()
+//                    editor.putInt("selected", 0)
+//                    editor.commit()
+//                    selectedState = 0
+//                }
+//            }
+//
+//            override fun onNothingSelected(adapterView: AdapterView<*>?) {
+//                /*timeDiff = 1800
+//                val editor = sharedPrefs.edit()
+//                editor.putInt("selected", 0)
+//                editor.commit()
+//                selectedState = 0*/
+//            }
+//        }
+
 
         notificationSwitch.setOnCheckedChangeListener { view, isChecked ->
             var recipientToken = FirebaseMessaging.getInstance().token.toString()
@@ -176,7 +269,7 @@ class SettingsFragment : Fragment() {
 
                     // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
                     //model.eventListLiveData.observe(this, nameObserver)
-                    Log.e("test", "line 61")
+                    //Log.e("test", "line 61")
                     val firebaseDatabase = FirebaseDatabase.getInstance()
                     val reference = firebaseDatabase.getReference()
                     reference.child("Events")//"myTopic/topic-name")
@@ -226,7 +319,7 @@ class SettingsFragment : Fragment() {
                                 if (title.isNotEmpty() && message.isNotEmpty() && recipientToken.isNotEmpty()) {
                                     PushNotification(NotificationData(title, message), recipientToken).also {
                                         sendNotification(it)
-                                        Log.e("test", "line 92")
+                                        //Log.e("test", "line 92")
                                     }
                                 }
 
@@ -251,6 +344,140 @@ class SettingsFragment : Fragment() {
             }
         }
 
+
+
+
+
+
+
+
+
+
+        //////////////////////////REMINDERS/////////////////////////////////////
+        reminderSwitch.setOnCheckedChangeListener { view, isChecked1 ->
+            var recipientToken = FirebaseMessaging.getInstance().token.toString()
+
+            if (isChecked1){
+                val editor = sharedPrefs.edit()
+                editor.putBoolean("isChecked1", true)
+                editor.commit()
+                switchState3 = true
+
+
+                if(recipientToken.isNotEmpty()) {
+
+                    var otherTitle = "" //= "oh crap" //binding.etTitle.text.toString()
+                    var otherMessage = ""
+                    //var isChanged = ""
+
+                    val firebaseDatabase = FirebaseDatabase.getInstance()
+                    val reference = firebaseDatabase.getReference()
+                    //val x = reference.child("Events")
+                    //Log.e("test", "THIS IS LINE 292")
+                    reference.child("Events")//"myTopic/topic-name")
+                        .addValueEventListener(object : ValueEventListener {
+
+                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                val children = dataSnapshot.children
+                                //var stop = 0
+                                //var changedEventCount = 0
+                                children.forEach {
+
+                                    val body = dataSnapshot.child("body").value.toString()
+                                    if(JSONObject(it.getValue(String::class.java)!!).has("startRaw")) {
+                                    //if (JSONObject(it.getValue(String::class.java)!!).has("isNew")) {
+                                        var str_date =
+                                            JSONObject(it.getValue(String::class.java)!!).get("startRaw")
+                                        val zonedDateTime = ZonedDateTime.parse(str_date.toString())
+                                        val scheduledSeconds = zonedDateTime.toEpochSecond()
+                                        val now = ZonedDateTime.parse(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).toString()+":00+00:00")//now()
+
+                                        val nowSeconds = now.toEpochSecond()
+//                                        val period: Period = Period.between(
+//                                            now.toLocalDate(),
+//                                            zonedDateTime.toLocalDate()
+//                                        )
+                                        //val thresholdPeriod: Period = 3600
+                                        //)
+                                        //if (scheduledSeconds != null && nowSeconds != null) {
+                                            //if (period.days == 0 && period.months == 0 && period.years == 0) {
+                                        //Log.e("test", "line MADE IT HERE: " + (scheduledSeconds - nowSeconds))
+                                        //Log.e("test", "line MADE IT HERE: " + zonedDateTime.truncatedTo(ChronoUnit.HOURS) + " AND " + now.truncatedTo(ChronoUnit.HOURS))
+                                        if (scheduledSeconds != null && nowSeconds != null && (scheduledSeconds - nowSeconds <= timeDiff)  && (scheduledSeconds - nowSeconds >= 0)) {
+                                        //if (zonedDateTime)
+                                        //if (zonedDateTime.truncatedTo(ChronoUnit.HOURS)
+                                        //                .isEqual(now.truncatedTo(ChronoUnit.HOURS))) {
+                                                    //    isChanged = JSONObject(it.getValue(String::class.java)!!).get("isNew").toString()
+                                                //    if (isChanged == "yes") {
+                                                    //Log.e("test", "line MADE IT HERE")
+                                                    var eventNameHere =
+                                                        JSONObject(it.getValue(String::class.java)!!).get("organization")
+
+                                                otherTitle = "" + eventNameHere + " event is happening soon!"
+                                                otherMessage = "New events have been added!"
+                                                //isChanged = "no"
+                                                //stop = 1
+                                                //changedEventCount = changedEventCount + 1
+
+                                            }
+
+                                    //}
+                                    }
+
+
+
+                                }
+                                //val message = binding.etMessage.text.toString()
+                                //demo key:
+                                // fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq
+                                //val recipientToken = binding.etToken.text.toString()
+                                val recipientToken = "fCMEZJKPTCG8bmePLsc_Tu:APA91bE8R3mdvPCLJMLGSwagmeSB9QJksdA9VKwSy45-nJUxrAkkJqTmj8UTjWh9gflOgif6SuOrKepaJZyewLsd-XDfj5O1rWuT5JYJqujUU0XUUoM_xaJG52u60P4s_5uggNQAz1kF"
+                                //"fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq"
+
+
+
+                                Log.e("test", "line 88")
+                                if (otherTitle.isNotEmpty() && otherMessage.isNotEmpty() && recipientToken.isNotEmpty()) {
+                                    PushNotification(NotificationData(otherTitle, otherMessage), recipientToken).also {
+                                        sendNotification(it)
+                                        Log.e("test", "line 92")
+                                    }
+                                }
+
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+
+                        }
+                        )
+                }
+                //view.findNavController().navigate(R.id.action_settingsFragment_to_notificationTokenFragment);
+            }
+            else {
+                val editor: SharedPreferences.Editor =
+                    view.context.getSharedPreferences("com.example.qi3353", MODE_PRIVATE).edit()
+                editor.putBoolean("isChecked1", false)
+                editor.commit()
+                switchState3 = false
+
+            }
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
         return view
     }
 
@@ -274,6 +501,19 @@ class SettingsFragment : Fragment() {
     }
 
 
+    private fun getPersistedItem(): Int {
+        val keyName = makePersistedItemKeyName()
+        return sharedPrefs.getInt(keyName, 0)
+    }
 
+    protected fun setPersistedItem(position: Int) {
+        val keyName = makePersistedItemKeyName()
+        sharedPrefs.edit().putInt(keyName, position)
+            .commit()
+    }
+
+    private fun makePersistedItemKeyName(): String {
+        return "_your_key"
+    }
     //notificationSwitch
 }
