@@ -410,11 +410,13 @@ class SettingsFragment : Fragment() {
                                                     //    isChanged = JSONObject(it.getValue(String::class.java)!!).get("isNew").toString()
                                                 //    if (isChanged == "yes") {
                                                     //Log.e("test", "line MADE IT HERE")
-                                                    var eventNameHere =
+                                                    var orgName =
                                                         JSONObject(it.getValue(String::class.java)!!).get("organization")
+                                            var eventName =
+                                                JSONObject(it.getValue(String::class.java)!!).get("name")
 
-                                                otherTitle = "" + eventNameHere + " event is happening soon!"
-                                                otherMessage = "New events have been added!"
+                                                otherTitle = "" + orgName + " is hosting an event soon!"
+                                                otherMessage = "" + eventName
                                                 //isChanged = "no"
                                                 //stop = 1
                                                 //changedEventCount = changedEventCount + 1
