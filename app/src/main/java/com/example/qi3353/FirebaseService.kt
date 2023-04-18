@@ -12,6 +12,7 @@ import android.graphics.Color
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import kotlin.random.Random
@@ -36,6 +37,7 @@ class FirebaseService : FirebaseMessagingService() {
     {
         super.onNewToken(newToken)
         token = newToken
+
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
@@ -44,6 +46,7 @@ class FirebaseService : FirebaseMessagingService() {
         val intent = Intent(this, FirebaseService::class.java)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notificationID = Random.nextInt()
+
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel(notificationManager)

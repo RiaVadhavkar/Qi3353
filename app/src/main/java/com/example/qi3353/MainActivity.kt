@@ -6,7 +6,11 @@ import android.os.Handler
 import android.os.Looper
 import android.view.ViewTreeObserver
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.google.firebase.database.core.view.View
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +23,10 @@ class MainActivity : AppCompatActivity() {
 
         installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
         Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
+
+        //val requester = PeriodicWorkRequest.Builder(NotificationWorker::class.java, 1, TimeUnit.DAYS).addTag("thisWorker").build()
+
+        //WorkManager.getInstance().enqueueUniquePeriodicWork("thisWorker",ExistingPeriodicWorkPolicy.REPLACE, requester)
         setContentView(R.layout.activity_main)
     }
 }

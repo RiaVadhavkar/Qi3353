@@ -110,6 +110,7 @@ class EventRepository {
                     )
                 }
                 liveData.postValue(eventList)
+
             }
 
             override fun onCancelled(error: DatabaseError) {
