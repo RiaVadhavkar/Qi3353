@@ -4,17 +4,17 @@
     android:id="@+id/navigation"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF">
+    android:background="@color/yellow">
 
     <View
         android:id="@+id/border"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:background="#000000"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/yellow"
+        app:layout_constraintBottom_toTopOf="@id/searchBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/searchBtn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/homeBtn"
@@ -22,12 +22,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_awesome"
         android:text="\uf015"
-        android:textColor="#000000"
         android:textSize="35sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/searchBtn"
-        app:layout_constraintTop_toBottomOf="@id/border"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/border" />
 
     <TextView
         android:id="@+id/searchBtn"
@@ -37,12 +36,11 @@
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="\uf002"
-        android:textColor="#000000"
         android:textSize="35sp"
-        app:layout_constraintStart_toEndOf="@id/homeBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/settingsBtn"
-        app:layout_constraintTop_toBottomOf="@id/border"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/homeBtn"
+        app:layout_constraintTop_toBottomOf="@id/border" />
 
     <TextView
         android:id="@+id/settingsBtn"
@@ -50,7 +48,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_awesome"
         android:text="\uf013"
-        android:textColor="#000000"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
