@@ -124,6 +124,7 @@ class EventFragment : Fragment() {
         }
         else {
             binding.addToCalendarButton.isEnabled = false
+            binding.addToCalendarButton.backgroundTintList = requireContext().resources.getColorStateList(R.color.lightGray)
         }
 
 
