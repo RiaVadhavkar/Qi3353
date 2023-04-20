@@ -2,20 +2,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <Button
+    <TextView
         android:id="@+id/tag"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        android:backgroundTint="#E0E0E0"
-        android:fontFamily="@font/inter_extrabold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/tag_preferences"
+        android:fontFamily="@font/manrope_semi_bold"
+        android:paddingStart="20dp"
+        android:paddingTop="12.5dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="12.5dp"
         android:text="Text"
-        android:textColor="#ff000000"
-        app:cornerRadius="70dp"
+        android:textAllCaps="false"
+        android:textColor="#0D0C22"
+        android:textSize="15dp"
+        app:cornerRadius="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

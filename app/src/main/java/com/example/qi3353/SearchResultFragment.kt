@@ -48,8 +48,7 @@ class SearchResultFragment : Fragment() {
         eventFilter = this.arguments?.get("filteredEvent") as MutableList<Event>
         searchTerm = this.requireArguments().getString("searchTerm").toString()
 
-        binding.searchResultTitle.text = "Result(s) for: \"" + searchTerm.lowercase() + "\""
-
+        binding.pageTitle.title.text = "\"" + searchTerm.lowercase().replaceFirstChar { it.uppercase() } + "\" " + "Results"
 
         // Bottom navigation buttons.
         binding.navigation.homeBtn.setOnClickListener {
@@ -89,7 +88,7 @@ class SearchResultFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             if (events[position].name.length > 20){
-                holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name.substring(0, 17) + "..."
+                holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name.substring(0, 15) + "..."
             }
             else {
                 holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name

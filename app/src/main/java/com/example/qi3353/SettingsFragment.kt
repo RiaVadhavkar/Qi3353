@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.qi3353.databinding.FragmentSettingsBinding
@@ -75,6 +76,8 @@ class SettingsFragment : Fragment() {
     ): View? {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
+        binding.pageTitle.title.text = "Settings"
+
 
         var view = binding.root
 
@@ -82,13 +85,18 @@ class SettingsFragment : Fragment() {
         reminderSwitch = view.findViewById<Switch>(R.id.reminderSwitch)
         spinner = view.findViewById<Spinner>(R.id.reminderSpinner)
 
+
         //temp = true
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
 
         if (user == null) {
             binding.logoutButton.text = "Sign In"
+            binding.userContainer.visibility = View.GONE
             binding.preferencesButton.visibility = View.GONE
+        }
+        else {
+            binding.email.text = user.email.toString()
         }
 
         sharedPrefs = view.context.getSharedPreferences("com.example.qi3353", Context.MODE_PRIVATE)
@@ -150,9 +158,9 @@ class SettingsFragment : Fragment() {
         ArrayAdapter.createFromResource(
             activity as Context,
             R.array.reminderTimes,
-            android.R.layout.simple_spinner_item
+            R.layout.custom_spinner_selected_item
         ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.custom_spinner_item)
             spinner.adapter = adapter
         }
 
@@ -198,6 +206,14 @@ class SettingsFragment : Fragment() {
                 // TODO Auto-generated method stub
             }
         })
+
+        if (notificationSwitch.isChecked) {
+            notificationSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
+        }
+
+        if (reminderSwitch.isChecked) {
+            reminderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
+        }
 
 //        spinner.onItemSelectedListener = object :
 //            AdapterView.OnItemSelectedListener {
@@ -250,6 +266,7 @@ class SettingsFragment : Fragment() {
                     editor.commit()
                     switchState2 = true
 
+                notificationSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
 
                 //temp = true
                 if(recipientToken.isNotEmpty()) {
@@ -340,6 +357,7 @@ class SettingsFragment : Fragment() {
                 editor.putBoolean("isChecked", false)
                 editor.commit()
                 switchState2 = false
+                notificationSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.thumb)
 
             }
         }
@@ -362,6 +380,8 @@ class SettingsFragment : Fragment() {
                 editor.putBoolean("isChecked1", true)
                 editor.commit()
                 switchState3 = true
+
+                reminderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
 
 
                 if(recipientToken.isNotEmpty()) {
@@ -433,7 +453,7 @@ class SettingsFragment : Fragment() {
                                 //demo key:
                                 // fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq
                                 //val recipientToken = binding.etToken.text.toString()
-                                val recipientToken = "fnhm0gU7S6m_NZOwueBrLP:APA91bGPBHmwZVU5SVavmWLRNKsE8tgVzOy4VTGVQPXru6k5VCQzUGojrYN-zmaM8Mzf2jTh2aP5oDkt-XpjQxSmsCRdL8uAMH8lOH4dhtVuS0rwe66h4BRqzyD_zdCtNGOPEKEQd6bq"
+                                val recipientToken = "dDu3HbTJSciPz_f51gFUkp:APA91bHHufCPg60CgkAzgtiwIeyIqDQmxcCNSBRM-F50QhCLmTDdm7KSbqrr8sTFn5EqeNl48o9980hwRXYQzb8TDUUicYcQflPG4zxmzRDZ4os5aEonXzeXCes_cvX06liYkPmM5ChD"
 
 
 
@@ -462,6 +482,8 @@ class SettingsFragment : Fragment() {
                 editor.putBoolean("isChecked1", false)
                 editor.commit()
                 switchState3 = false
+
+                reminderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.thumb)
 
             }
         }

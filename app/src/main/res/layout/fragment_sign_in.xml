@@ -7,7 +7,6 @@
     android:background="#EDC26F"
     tools:context=".SignInFragment">
 
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="275dp"
@@ -24,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="175dp"
-        android:layout_marginBottom="25dp"
         android:backgroundTint="#FFFFFF"
         android:drawableLeft="@drawable/google"
         android:fontFamily="@font/product_sans_bold"
@@ -35,20 +33,17 @@
         app:layout_constraintBottom_toTopOf="@id/continueAsGuest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        app:strokeColor="@color/black" />
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
     <TextView
         android:id="@+id/continueAsGuest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_bold"
-        android:letterSpacing="-0.025"
-        android:linksClickable="true"
+        android:fontFamily="@font/manrope_extra_bold"
+        android:padding="25dp"
         android:text="Continue as Guest"
-        android:textColor="@color/black"
-        android:textColorLink="#2196F3"
-        android:textSize="16sp"
+        android:textColor="#000000"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

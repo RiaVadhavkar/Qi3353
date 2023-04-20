@@ -8,4 +8,50 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="diversity">Diversity</string>
+    <string name="cultural">Cultural</string>
+    <string name="international">Intl.</string>
+    <string name="religious">Religious</string>
+    <string name="gender">Gender</string>
+    <string name="lgbtq">LGBTQ+</string>
+    <string name="social">Social</string>
+    <string name="food">Food &amp; Dining</string>
+    <string name="art">Art</string>
+    <string name="music">Music</string>
+    <string name="dance">Dance</string>
+    <string name="community">Community</string>
+    <string name="volunteer">Volunteer</string>
+    <string name="utprosim">Ut Prosim</string>
+    <string name="academic">Academic</string>
+    <string name="gaming">Gaming</string>
+    <string name="sports">Sports</string>
+    <string name="fitness">Fitness</string>
+    <string name="health">Health</string>
+    <string name="grads">Grads</string>
+    <string name="alumni">Alumni</string>
+    <string name="miscellaneous">Misc.</string>
+
+    <string name="diversityEmoji">&#x1F46B;</string>
+    <string name="culturalEmoji">&#x1F30E;</string>
+    <string name="internationalEmoji">&#x1F310;</string>
+    <string name="religiousEmoji">&#x26EA;</string>
+    <string name="genderEmoji">&#x1F9CD;</string>
+    <string name="lgbtqEmoji">&#x1F308;</string>
+    <string name="socialEmoji">&#x1F4AC;</string>
+    <string name="foodEmoji">&#x1F96A;</string>
+    <string name="artEmoji">&#x1F3A8;</string>
+    <string name="musicEmoji">&#x1F3B9;</string>
+    <string name="danceEmoji">&#x1F483;</string>
+    <string name="communityEmoji">&#x1F3D8;</string>
+    <string name="volunteerEmoji">&#x1F64B;</string>
+    <string name="utprosimEmoji">&#x1F91D;</string>
+    <string name="academicEmoji">&#x1F4DA;</string>
+    <string name="gamingEmoji">&#x1F3AE;</string>
+    <string name="sportsEmoji">&#x1F3C8;</string>
+    <string name="fitnessEmoji">&#x1F3CB;</string>
+    <string name="healthEmoji">&#x1F4AA;</string>
+    <string name="gradsEmoji">&#x1F393;</string>
+    <string name="alumniEmoji">&#x1F9E1;</string>
+    <string name="miscellaneousEmoji">&#x2753;</string>
 </resources>

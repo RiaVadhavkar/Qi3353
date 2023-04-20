@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.qi3353.databinding.FragmentSearchBinding
@@ -38,6 +39,8 @@ class SearchFragment : Fragment() {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         val view = binding.root
         val model = ViewModelProvider(requireActivity()).get(EventViewModel::class.java)
+
+        binding.pageTitle.title.text = "Search"
 
         //eventList.clear()
 
@@ -93,7 +96,7 @@ class SearchFragment : Fragment() {
 
         // Sets up recycler view.
         recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        recyclerView.layoutManager = GridLayoutManager(context, 3)
         recyclerView.adapter = SearchRVA(activity as MainActivity)
 
         // Bottom navigation buttons.
@@ -155,7 +158,56 @@ class SearchFragment : Fragment() {
         ) :
             RecyclerView.ViewHolder(view) {
             fun bindItems(tag: String) {
-                binding.tag.text = tag
+                binding.emoji.text = when (tag.lowercase()) {
+                    "diversity" -> getString(R.string.diversityEmoji)
+                    "cultural" -> getString(R.string.culturalEmoji)
+                    "international" -> getString(R.string.internationalEmoji)
+                    "religious" -> getString(R.string.religiousEmoji)
+                    "gender" -> getString(R.string.genderEmoji)
+                    "lgbtq" -> getString(R.string.lgbtqEmoji)
+                    "social" -> getString(R.string.socialEmoji)
+                    "food" -> getString(R.string.foodEmoji)
+                    "art" -> getString(R.string.artEmoji)
+                    "music" -> getString(R.string.musicEmoji)
+                    "dance" -> getString(R.string.danceEmoji)
+                    "community" -> getString(R.string.communityEmoji)
+                    "volunteer" -> getString(R.string.volunteerEmoji)
+                    "utprosim" -> getString(R.string.utprosimEmoji)
+                    "academic" -> getString(R.string.academicEmoji)
+                    "gaming" -> getString(R.string.gamingEmoji)
+                    "sports" -> getString(R.string.sportsEmoji)
+                    "fitness" -> getString(R.string.fitnessEmoji)
+                    "health" -> getString(R.string.healthEmoji)
+                    "grads" -> getString(R.string.gradsEmoji)
+                    "alumni" -> getString(R.string.alumniEmoji)
+                    "miscellaneous" -> getString(R.string.miscellaneousEmoji)
+                    else -> ""
+                }
+                binding.tag.text = when (tag.lowercase()) {
+                    "diversity" -> getString(R.string.diversity)
+                    "cultural" -> getString(R.string.cultural)
+                    "international" -> getString(R.string.international)
+                    "religious" -> getString(R.string.religious)
+                    "gender" -> getString(R.string.gender)
+                    "lgbtq" -> getString(R.string.lgbtq)
+                    "social" -> getString(R.string.social)
+                    "food" -> getString(R.string.food)
+                    "art" -> getString(R.string.art)
+                    "music" -> getString(R.string.music)
+                    "dance" -> getString(R.string.dance)
+                    "community" -> getString(R.string.community)
+                    "volunteer" -> getString(R.string.volunteer)
+                    "utprosim" -> getString(R.string.utprosim)
+                    "academic" -> getString(R.string.academic)
+                    "gaming" -> getString(R.string.gaming)
+                    "sports" -> getString(R.string.sports)
+                    "fitness" -> getString(R.string.fitness)
+                    "health" -> getString(R.string.health)
+                    "grads" -> getString(R.string.grads)
+                    "alumni" -> getString(R.string.alumni)
+                    "miscellaneous" -> getString(R.string.miscellaneous)
+                    else -> ""
+                }.uppercase()
             }
         }
     }

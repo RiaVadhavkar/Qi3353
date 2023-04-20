@@ -78,7 +78,12 @@ class EventFragment : Fragment() {
 //        event = this.arguments?.get("event") as Event
 
         binding.eventNameText.text = eventName
-        binding.organizationNameText.text = orgName
+        if (orgName == null) {
+            binding.organizationNameText.visibility = View.GONE
+        }
+        else {
+            binding.organizationNameText.text = orgName
+        }
         binding.dateText.text = date
         binding.timeText.text = startTime + " - " + endTime
         binding.locationText.text = location

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:editTextColor">@color/gray</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textColorSecondary">@color/gray</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">@font/manrope_semi_bold</item>
+    </style>
+
+    <style name="RoundImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5dp</item>
+        <item name="color">@color/white</item>
+    </style>
+</resources>

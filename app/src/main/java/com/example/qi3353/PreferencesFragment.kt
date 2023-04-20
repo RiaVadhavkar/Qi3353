@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.qi3353.databinding.FragmentPreferencesBinding
 import com.example.qi3353.databinding.TagPreferencesItemBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -19,9 +20,7 @@ class PreferencesFragment : Fragment() {
     private lateinit var binding: FragmentPreferencesBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var recyclerView: RecyclerView
-
     private var clickedPref: MutableSet<String> = mutableSetOf<String>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,19 +30,17 @@ class PreferencesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Sets up binding.
         binding = FragmentPreferencesBinding.inflate(inflater, container, false)
         val view = binding.root
 
         auth = FirebaseAuth.getInstance()
-
         val user = auth.currentUser
 
 
 
         // Sets up recycler view.
         recyclerView = binding.recyclerView
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.layoutManager = StaggeredGridLayoutManager(13, StaggeredGridLayoutManager.HORIZONTAL)
         recyclerView.adapter = PreferencesRVA(activity as MainActivity)
 
         binding.continueButton.setOnClickListener {
@@ -105,22 +102,47 @@ class PreferencesFragment : Fragment() {
                     for(pref in preferencesList){
                         if(pref.lowercase().equals(tag.lowercase())){
                             clicked = true
-                            binding.tag.setBackgroundColor(Color.parseColor("#A0A0A0"))
+                            binding.tag.setBackgroundTintList(requireContext().resources.getColorStateList(R.color.lightYellow))
                             clickedPref.add(tag.lowercase())
                             break
                         }
                     }
                 }
 
-                binding.tag.text = tag
+                binding.tag.text = when (tag.lowercase()) {
+                    "diversity" -> getString(R.string.diversityEmoji) + " " + getString(R.string.diversity)
+                    "cultural" -> getString(R.string.culturalEmoji) + " " + getString(R.string.cultural)
+                    "international" -> getString(R.string.internationalEmoji) + " " + getString(R.string.international)
+                    "religious" -> getString(R.string.religiousEmoji) + " " + getString(R.string.religious)
+                    "gender" -> getString(R.string.genderEmoji) + " " + getString(R.string.gender)
+                    "lgbtq" -> getString(R.string.lgbtqEmoji) + " " + getString(R.string.lgbtq)
+                    "social" -> getString(R.string.socialEmoji) + " " + getString(R.string.social)
+                    "food" -> getString(R.string.foodEmoji) + " " + getString(R.string.food)
+                    "art" -> getString(R.string.artEmoji) + " " + getString(R.string.art)
+                    "music" -> getString(R.string.musicEmoji) + " " + getString(R.string.music)
+                    "dance" -> getString(R.string.danceEmoji) + " " + getString(R.string.dance)
+                    "community" -> getString(R.string.communityEmoji) + " " + getString(R.string.community)
+                    "volunteer" -> getString(R.string.volunteerEmoji) + " " + getString(R.string.volunteer)
+                    "utprosim" -> getString(R.string.utprosimEmoji) + " " + getString(R.string.utprosim)
+                    "academic" -> getString(R.string.academicEmoji) + " " + getString(R.string.academic)
+                    "gaming" -> getString(R.string.gamingEmoji) + " " + getString(R.string.gaming)
+                    "sports" -> getString(R.string.sportsEmoji) + " " + getString(R.string.sports)
+                    "fitness" -> getString(R.string.fitnessEmoji) + " " + getString(R.string.fitness)
+                    "health" -> getString(R.string.healthEmoji) + " " + getString(R.string.health)
+                    "grads" -> getString(R.string.gradsEmoji) + " " + getString(R.string.grads)
+                    "alumni" -> getString(R.string.alumniEmoji) + " " + getString(R.string.alumni)
+                    "miscellaneous" -> getString(R.string.miscellaneousEmoji) + " " + getString(R.string.miscellaneous)
+                    else -> ""
+                }
+
                 binding.tag.setOnClickListener {
                     clicked = !clicked
                     if (clicked) {
-                        binding.tag.setBackgroundColor(Color.parseColor("#A0A0A0"))
+                        binding.tag.setBackgroundTintList(requireContext().resources.getColorStateList(R.color.lightYellow))
                         clickedPref.add(tag.lowercase())
                     }
                     else {
-                        binding.tag.setBackgroundColor(Color.parseColor("#E0E0E0"))
+                        binding.tag.setBackgroundTintList(null)
                         clickedPref.remove(tag.lowercase())
                     }
                 }
