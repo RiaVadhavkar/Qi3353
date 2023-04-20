@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+<<<<<<< HEAD
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:background="@drawable/card_item_shape"
@@ -20,6 +21,17 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars"
         app:shapeAppearanceOverlay="@style/RoundImage"/>
+=======
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:background="@color/transparent"
+    app:strokeColor="@color/black"
+    app:strokeWidth="3dp">
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textContainer"
@@ -39,10 +51,29 @@
             android:fontFamily="@font/manrope_extra_bold"
             android:maxLines="1"
             android:text="Event Name"
+<<<<<<< HEAD
             android:textColor="@color/black"
             android:textSize="17dp"
             app:layout_constraintBottom_toTopOf="@+id/date"
             app:layout_constraintEnd_toEndOf="parent"
+=======
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/eventName"
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,6 +81,7 @@
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:fontFamily="@font/manrope_semi_bold"
             android:text="01/01/01"
             android:textColor="@color/black"
@@ -58,11 +90,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/eventName" />
+=======
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="Wed, Mar 01 2023"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/eventName" />
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
 
         <TextView
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:fontFamily="@font/manrope_semi_bold"
             android:text="12:00 AM"
             android:textColor="@color/black"
@@ -70,11 +115,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/date" />
+=======
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="XX:XX AM/PM - XX:XX AM/PM"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
 
         <TextView
             android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:fontFamily="@font/manrope_semi_bold"
             android:text="Location"
             android:textColor="@color/black"
@@ -84,6 +142,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/time" />
+=======
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="MCB 110"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/time" />
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

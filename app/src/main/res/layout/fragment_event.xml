@@ -10,12 +10,19 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+<<<<<<< HEAD
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
         android:paddingBottom="25dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@id/navigation"
+=======
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,26 +40,63 @@
                 android:lineSpacingExtra="-5dp"
                 android:text="Event Name"
                 android:textColor="@color/black"
+<<<<<<< HEAD
                 android:textSize="30dp" />
+=======
+                android:textSize="24sp"
+                android:textStyle="bold" />
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
 
             <TextView
                 android:id="@+id/organizationNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/manrope_semi_bold"
                 android:text="Organization"
                 android:textColor="@color/gray"
                 android:textSize="17dp" />
+=======
+                android:fontFamily="@font/inter_semibold"
+                android:text="Organization Name"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
 
             <ImageView
                 android:id="@+id/eventImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="25dp"
                 android:adjustViewBounds="true"
                 tools:src="@tools:sample/backgrounds/scenic" />
+=======
+                android:fontFamily="@font/inter_semibold"
+                android:text="Wed, Mar 01 2023"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/timeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="XX:XX AM/PM - XX:XX AM/PM"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/locationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="MCB 110"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/infoContainer"
@@ -157,7 +201,16 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/descriptionContainer"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="wrap_content">
+=======
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
 
                 <TextView
                     android:id="@+id/descriptionText"

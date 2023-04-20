@@ -13,10 +13,36 @@
         layout="@layout/page_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         app:layout_constraintBottom_toTopOf="@id/search"
+=======
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/preferences_view_background"
+        app:layout_constraintBottom_toTopOf="@id/filter"
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Search">
+
+    </SearchView>
+
+    <TextView
+        android:id="@+id/filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:text="FILTER BY:"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search" />
 
     <android.widget.SearchView
         android:id="@+id/search"
@@ -61,7 +87,11 @@
         app:layout_constraintBottom_toTopOf="@id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@id/label" />
+=======
+        app:layout_constraintTop_toBottomOf="@id/filter" />
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
 
     <include
         android:id="@+id/navigation"

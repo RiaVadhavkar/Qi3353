@@ -45,16 +45,28 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:fontFamily="@font/manrope_semi_bold"
             android:gravity="center"
             android:text="someone@gmail.com"
             android:textColor="@color/black"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
+=======
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/preferences_view_background"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Preferences"
+            android:textAllCaps="false"
+            android:textSize="28sp"
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
 
+<<<<<<< HEAD
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -209,6 +221,74 @@
 
         <Spinner
             android:id="@+id/reminderSpinner"
+=======
+        <Switch
+            android:id="@+id/notificationSwitch"
+            android:layout_width="358dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/inter_extrabold"
+            android:text="Push Notifications"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <Switch
+            android:id="@+id/reminderSwitch"
+            android:layout_width="358dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/inter_extrabold"
+            android:text="Allow Reminders"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notificationSwitch"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <Spinner
+            android:id="@+id/reminderSpinner"
+            android:layout_width="357dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/settings_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reminderSwitch"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toTopOf="@id/navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reminderSpinner"
+            android:background="@drawable/logout_background"/>
+
+        <include
+            android:id="@+id/navigation"
+            layout="@layout/navigation"
+>>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_spinner_bg"

@@ -64,8 +64,6 @@ class SettingsFragment : Fragment() {
             FirebaseService.token = it
             //binding.etToken.setText(it)
 
-
-
         }
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
 
