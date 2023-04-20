@@ -2,7 +2,6 @@
 <resources>
     <color name="lightYellow">#F6E1B7</color>
     <color name="yellow">#EDC26F</color>
-<<<<<<< HEAD
     <color name="black">#0D0C22</color>
     <color name="white">#F3F3F4</color>
     <color name="milkWhite">#FCFCFC</color>
@@ -11,9 +10,5 @@
     <color name="track">#A9A8B0</color>
     <color name="thumb">#8C8B95</color>
     <color name="noColor">#00000000</color>
-=======
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="transparent">#d3d3d3</color>
->>>>>>> 9272704a0a68ea64daa84e11e8aa53a7b6c7d377
+
 </resources>
