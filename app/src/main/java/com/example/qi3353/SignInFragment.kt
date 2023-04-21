@@ -49,6 +49,13 @@ class SignInFragment : Fragment() {
 
         client = GoogleSignIn.getClient(view.context, options)
 
+        val user = auth.currentUser
+
+        if (user != null) {
+            auth.signOut()
+            client.signOut()
+        }
+
         binding.signInWithGoogle.setOnClickListener {
             signInWithGoogle()
         }

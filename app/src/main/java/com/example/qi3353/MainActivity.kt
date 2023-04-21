@@ -20,17 +20,9 @@ import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
-    private lateinit var client: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
-
-        if (user != null) {
-        }
 
         var keepSplashOnScreen = true
         val delay = 2000L
