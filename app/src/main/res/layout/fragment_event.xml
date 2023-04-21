@@ -10,184 +10,281 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        android:paddingBottom="25dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/eventNameText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/manrope_extra_bold"
-                android:lineSpacingExtra="-5dp"
-                android:text="Event Name"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-
-            <TextView
-                android:id="@+id/organizationNameText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/manrope_semi_bold"
-                android:text="Organization"
-                android:textColor="@color/gray"
-                android:textSize="17dp" />
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/eventImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="25dp"
                 android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@id/infoContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/infoContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/dateText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/manrope_semi_bold"
-                    android:text="Date"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toTopOf="@id/timeText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/timeText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/manrope_semi_bold"
-                    android:text="Time"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toTopOf="@+id/locationText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dateText" />
-
-                <TextView
-                    android:id="@+id/locationText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/manrope_semi_bold"
-                    android:text="Location"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/timeText" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/buttonContainer"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="15dp">
-
-                <Button
-                    android:id="@+id/addToCalendarButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
-                    android:background="@drawable/tag_preferences"
-                    android:fontFamily="@font/manrope_semi_bold"
-                    android:letterSpacing="-0.01"
-                    android:paddingStart="25dp"
-                    android:paddingEnd="25dp"
-                    android:text="Add to Calendar"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
-                    app:backgroundTint="@color/lightYellow"
-                    app:layout_constraintBottom_toTopOf="@id/notifyButton"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/notifyButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="25dp"
-                    android:background="@drawable/tag_preferences"
-                    android:fontFamily="@font/manrope_semi_bold"
-                    android:letterSpacing="-0.01"
-                    android:paddingStart="25dp"
-                    android:paddingEnd="25dp"
-                    android:text="Remind Me!"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
-                    app:backgroundTint="@color/lightYellow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/addToCalendarButton" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/descriptionContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="-25dp"
+                android:background="@drawable/event_info_container"
+                android:padding="25dp"
+                android:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/eventImage">
 
                 <TextView
-                    android:id="@+id/descriptionText"
+                    android:id="@+id/eventNameText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/manrope_extra_bold"
-                    android:text="Description"
+                    android:text="Event Name"
                     android:textColor="@color/black"
-                    android:textSize="17dp"
-                    app:layout_constraintBottom_toTopOf="@id/descriptionParagraphText"
+                    android:textSize="25dp"
+                    app:layout_constraintBottom_toTopOf="@id/organizationNameText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/descriptionParagraphText"
+                    android:id="@+id/organizationNameText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:fontFamily="@font/manrope_semi_bold"
-                    android:text="Description"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
+                    android:layout_marginBottom="25dp"
+                    android:fontFamily="@font/manrope_extra_bold"
+                    android:text="Event Name"
+                    android:textAllCaps="true"
+                    android:textColor="@color/gray"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toTopOf="@id/detailsContainer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/eventNameText" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/detailsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@id/buttonsContainer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/organizationNameText">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/dateContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        app:layout_constraintBottom_toTopOf="@id/timeContainer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/dateIcon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/date"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/dateText"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/dateText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/manrope_semi_bold"
+                            android:text="Date"
+                            android:textColor="@color/gray"
+                            android:textSize="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/dateIcon"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/timeContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@id/locationContainer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dateContainer">
+
+                        <ImageView
+                            android:id="@+id/timeIcon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/time"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/timeText"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/timeText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/manrope_semi_bold"
+                            android:text="Time"
+                            android:textColor="@color/gray"
+                            android:textSize="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/timeIcon"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/locationContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/timeContainer">
+
+                        <ImageView
+                            android:id="@+id/locationIcon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/location"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/locationText"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/locationText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/manrope_semi_bold"
+                            android:text="Location"
+                            android:textColor="@color/gray"
+                            android:textSize="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/locationIcon"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/buttonsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="25dp"
+                    app:layout_constraintBottom_toTopOf="@id/descriptionContainer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/detailsContainer">
+
+                    <Button
+                        android:id="@+id/addToCalendarButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tag_preferences"
+                        android:fontFamily="@font/manrope_semi_bold"
+                        android:letterSpacing="-0.01"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:text="Add to Calendar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        app:backgroundTint="@color/lightYellow"
+                        app:layout_constraintBottom_toTopOf="@id/notifyButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/notifyButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/tag_preferences"
+                        android:fontFamily="@font/manrope_semi_bold"
+                        android:letterSpacing="-0.01"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:text="Remind Me!"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        app:backgroundTint="@color/lightYellow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/addToCalendarButton" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/descriptionContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/descriptionText" />
+                    app:layout_constraintTop_toBottomOf="@+id/buttonsContainer">
+
+                    <TextView
+                        android:id="@+id/descriptionText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope_extra_bold"
+                        android:text="Description"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/descriptionParagraphText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/manrope_semi_bold"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
 
     <include
