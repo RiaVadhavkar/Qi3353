@@ -5,13 +5,13 @@
     android:layout_height="80dp"
     android:layout_margin="10dp"
     android:background="@drawable/tag_search"
-    android:backgroundTint="@color/milkWhite"
     android:padding="5dp">
 
     <TextView
         android:id="@+id/emoji"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="TextView"
         android:textSize="23dp"
@@ -25,7 +25,6 @@
         android:id="@+id/tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/manrope_extra_bold"
         android:gravity="center"
         android:text="TextView"

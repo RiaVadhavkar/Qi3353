@@ -6,9 +6,5 @@
             <corners android:radius="10dp"/>
         </shape>
     </item>
-    <item android:right="10dp">
-        <bitmap
-            android:gravity="end"
-            android:src="@drawable/bottom_arrow"/>
-    </item>
+    <item android:right="15dp" android:top="5dp" android:drawable="@drawable/bottom_arrow" android:gravity="center|end"/>
 </layer-list>

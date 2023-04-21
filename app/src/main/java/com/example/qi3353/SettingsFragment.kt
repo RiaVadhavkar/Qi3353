@@ -207,10 +207,12 @@ class SettingsFragment : Fragment() {
 
         if (notificationSwitch.isChecked) {
             notificationSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
+            notificationSwitch.trackTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
         }
 
         if (reminderSwitch.isChecked) {
             reminderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
+            reminderSwitch.trackTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
         }
 
 //        spinner.onItemSelectedListener = object :
@@ -265,6 +267,7 @@ class SettingsFragment : Fragment() {
                     switchState2 = true
 
                 notificationSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
+                notificationSwitch.trackTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
 
                 //temp = true
                 if(recipientToken.isNotEmpty()) {
@@ -355,7 +358,9 @@ class SettingsFragment : Fragment() {
                 editor.putBoolean("isChecked", false)
                 editor.commit()
                 switchState2 = false
-                notificationSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.thumb)
+
+                notificationSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.lightGray)
+                notificationSwitch.trackTintList = ContextCompat.getColorStateList(requireContext(), R.color.lightGray)
 
             }
         }
@@ -380,6 +385,7 @@ class SettingsFragment : Fragment() {
                 switchState3 = true
 
                 reminderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
+                reminderSwitch.trackTintList = ContextCompat.getColorStateList(requireContext(), R.color.yellow)
 
 
                 if(recipientToken.isNotEmpty()) {
@@ -481,7 +487,8 @@ class SettingsFragment : Fragment() {
                 editor.commit()
                 switchState3 = false
 
-                reminderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.thumb)
+                reminderSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.lightGray)
+                reminderSwitch.trackTintList = ContextCompat.getColorStateList(requireContext(), R.color.lightGray)
 
             }
         }

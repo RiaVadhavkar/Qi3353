@@ -102,7 +102,7 @@ class PreferencesFragment : Fragment() {
                     for(pref in preferencesList){
                         if(pref.lowercase().equals(tag.lowercase())){
                             clicked = true
-                            binding.tag.setBackgroundTintList(requireContext().resources.getColorStateList(R.color.lightYellow))
+                            binding.tag.setBackgroundTintList(requireContext().resources.getColorStateList(R.color.lighterYellow))
                             clickedPref.add(tag.lowercase())
                             break
                         }
@@ -138,7 +138,7 @@ class PreferencesFragment : Fragment() {
                 binding.tag.setOnClickListener {
                     clicked = !clicked
                     if (clicked) {
-                        binding.tag.setBackgroundTintList(requireContext().resources.getColorStateList(R.color.lightYellow))
+                        binding.tag.setBackgroundTintList(requireContext().resources.getColorStateList(R.color.lighterYellow))
                         clickedPref.add(tag.lowercase())
                     }
                     else {

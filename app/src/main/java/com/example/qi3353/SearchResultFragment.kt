@@ -88,7 +88,7 @@ class SearchResultFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             if (events[position].name.length > 20){
-                holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name.substring(0, 15) + "..."
+                holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name.substring(0, 17) + "..."
             }
             else {
                 holder.view.findViewById<TextView>(R.id.eventName).text = events[position].name

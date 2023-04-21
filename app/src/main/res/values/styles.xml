@@ -12,6 +12,9 @@
     <style name="RoundImage" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">5dp</item>
-        <item name="color">@color/white</item>
+    </style>
+
+    <style name="RoundDropdown" parent="android:Widget.Material.Spinner.Underlined">
+        <item name="android:popupBackground">@drawable/popup_bg</item>
     </style>
 </resources>

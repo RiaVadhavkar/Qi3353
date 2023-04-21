@@ -28,30 +28,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pageTitle"
-        app:layout_constraintBottom_toTopOf="@id/hideHistorical" />
+        app:layout_constraintBottom_toTopOf="@id/buttonContainer" />
 
-    <Button
-        android:id="@+id/hideHistorical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
-        android:background="@drawable/tag_preferences"
-        android:fontFamily="@font/manrope_semi_bold"
-        android:letterSpacing="-0.01"
-        android:paddingStart="25dp"
-        android:paddingEnd="25dp"
-        android:text="Hide Past Events"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
+    <ImageView
+        android:id="@+id/gradient"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/gradient"
+        app:layout_constraintBottom_toTopOf="@+id/buttonContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="20dp"
+        android:paddingBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@id/navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/hideHistorical"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/tag_preferences"
+            android:fontFamily="@font/manrope_semi_bold"
+            android:letterSpacing="-0.01"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="Hide Past Events"
+            android:textAllCaps="false"
+            android:textColor="@color/gray"
+            android:textSize="15dp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
         android:id="@+id/navigation"
