@@ -12,5 +12,6 @@ data class Event(
     var photo: String,
     var date: String,
     var startRaw: String,
-    var endRaw: String
+    var endRaw: String,
+    var isNew: String,
     )
