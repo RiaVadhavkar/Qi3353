@@ -302,8 +302,8 @@ class SettingsFragment : Fragment() {
                                     Log.e("test", "line 71")
 
                                     val body = dataSnapshot.child("body").value.toString()
-                                    if (JSONObject(it.getValue(String::class.java)!!).has("isNew")) {
-                                    isChanged = JSONObject(it.getValue(String::class.java)!!).get("isNew").toString()
+                                    //if (JSONObject(it.getValue(String::class.java)!!).has("isNew")) {
+                                    isChanged = it.child("isNew").value.toString()
                                     if (isChanged == "yes") {
                                         //title = dataSnapshot.child("title").value.toString()
                                         /*title =
@@ -318,7 +318,7 @@ class SettingsFragment : Fragment() {
                                         changedEventCount = changedEventCount + 1
 
                                     }
-                                    }
+                                    //}
                                 //}
 
 
@@ -408,10 +408,10 @@ class SettingsFragment : Fragment() {
                                 children.forEach {
 
                                     val body = dataSnapshot.child("body").value.toString()
-                                    if(JSONObject(it.getValue(String::class.java)!!).has("startRaw")) {
+                                    //if(JSONObject(it.getValue(String::class.java)!!).has("startRaw")) {
                                     //if (JSONObject(it.getValue(String::class.java)!!).has("isNew")) {
                                         var str_date =
-                                            JSONObject(it.getValue(String::class.java)!!).get("startRaw")
+                                            it.child("startRaw").value
                                         val zonedDateTime = ZonedDateTime.parse(str_date.toString())
                                         val scheduledSeconds = zonedDateTime.toEpochSecond()
                                         val now = ZonedDateTime.parse(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).toString()+":00+00:00")//now()
@@ -434,10 +434,9 @@ class SettingsFragment : Fragment() {
                                                     //    isChanged = JSONObject(it.getValue(String::class.java)!!).get("isNew").toString()
                                                 //    if (isChanged == "yes") {
                                                     //Log.e("test", "line MADE IT HERE")
-                                                    var orgName =
-                                                        JSONObject(it.getValue(String::class.java)!!).get("organization")
+                                                    var orgName = it.child("organization").value
                                             var eventName =
-                                                JSONObject(it.getValue(String::class.java)!!).get("name")
+                                                it.child("name").value
 
                                                 otherTitle = "" + orgName + " is hosting an event soon!"
                                                 otherMessage = "" + eventName
@@ -448,7 +447,7 @@ class SettingsFragment : Fragment() {
                                             }
 
                                     //}
-                                    }
+                                    //}
 
 
 
