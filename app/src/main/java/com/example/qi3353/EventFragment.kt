@@ -161,8 +161,15 @@ class EventFragment : Fragment() {
                     Toast.makeText(activity, "Event added.", Toast.LENGTH_SHORT).show()
                 }
             }
-            catch (e: UserRecoverableAuthIOException) {
-                requestPermissions()
+            catch (e: Exception) {
+                if (e is UserRecoverableAuthIOException) {
+                    requestPermissions()
+                }
+                else {
+                    Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(activity, "Event can't be added at this time.", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }.start()
     }

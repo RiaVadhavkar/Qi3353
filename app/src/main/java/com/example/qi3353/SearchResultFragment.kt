@@ -120,13 +120,16 @@ class SearchResultFragment : Fragment() {
                     R.id.action_searchResultFragment_to_eventFragment,
                     bundleOf(
                         "eventName" to events[position].name,
+                        "orgName" to events[position].organization,
                         "date" to events[position].date,
                         "startTime" to events[position].start_time,
                         "endTime" to events[position].end_time,
                         "location" to events[position].location,
                         "position" to position,
                         "description" to events[position].description,
-                        "image" to stringGenerated
+                        "image" to stringGenerated,
+                        "rawStartTime" to events[position].startRaw,
+                        "rawEndTime" to events[position].endRaw
                     )
                 )
 
