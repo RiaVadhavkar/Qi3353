@@ -66,7 +66,6 @@ class ForYouFragment : Fragment() {
 
         model.fetchEventList()
         model.eventListLiveData.observe(viewLifecycleOwner){ eventList ->
-            liveEventList = eventList
             recyclerView = view.findViewById(R.id.recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             auth = FirebaseAuth.getInstance()
@@ -130,12 +129,18 @@ class ForYouFragment : Fragment() {
 //                    Log.d("first event:", eventListSorted[0].name + ", id: " + eventListSorted[0].eventId)
 //                }
                 binding.pageTitle.title.text = "For You"
+
+                liveEventList = eventListSorted
+
             }
             else {
                 binding.pageTitle.title.text = "Home"
                 eventList.sortBy { it.startRaw }
 
                 viewAdapter = RecyclerViewAdapter(eventList.size, eventList)
+
+                liveEventList = eventList
+
             }
             recyclerView.adapter = viewAdapter
 
