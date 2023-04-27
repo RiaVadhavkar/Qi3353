@@ -125,9 +125,33 @@ class ForYouFragment : Fragment() {
                 }
 
                 viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
-//                if(!eventListSorted.isEmpty()){
-//                    Log.d("first event:", eventListSorted[0].name + ", id: " + eventListSorted[0].eventId)
-//                }
+                recyclerView.adapter = viewAdapter
+
+                var clicked = 0
+
+                binding.hideHistorical.setOnClickListener {
+                    if (clicked == 0) {
+                        var eventListHistorical: MutableList<Event> = mutableListOf<Event>()
+                        for(event in eventListSorted){
+                            if(LocalDate.parse(event.startRaw.substring(0, 10)) > LocalDate.now()){
+                                eventListHistorical.add(event)
+                            }
+                        }
+
+                        viewAdapter = RecyclerViewAdapter(eventListHistorical.size, eventListHistorical)
+                        recyclerView.adapter = viewAdapter
+                        binding.hideHistorical.text = "Show All Events"
+                        clicked = 1
+                    }
+                    else if (clicked == 1) {
+                        viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
+                        recyclerView.adapter = viewAdapter
+                        binding.hideHistorical.text = "Hide Past Events"
+                        clicked = 0
+                    }
+                }
+
+
                 binding.pageTitle.title.text = "For You"
 
                 liveEventList = eventListSorted
@@ -138,11 +162,35 @@ class ForYouFragment : Fragment() {
                 eventList.sortBy { it.startRaw }
 
                 viewAdapter = RecyclerViewAdapter(eventList.size, eventList)
+                recyclerView.adapter = viewAdapter
 
                 liveEventList = eventList
 
+                var clicked = 0
+
+                binding.hideHistorical.setOnClickListener {
+                    if (clicked == 0) {
+                        var eventListHistorical: MutableList<Event> = mutableListOf<Event>()
+                        for(event in eventList){
+                            if(LocalDate.parse(event.startRaw.substring(0, 10)) > LocalDate.now()){
+                                eventListHistorical.add(event)
+                            }
+                        }
+
+                        viewAdapter = RecyclerViewAdapter(eventListHistorical.size, eventListHistorical)
+                        recyclerView.adapter = viewAdapter
+                        binding.hideHistorical.text = "Show All Events"
+                        clicked = 1
+                    }
+                    else if (clicked == 1) {
+                        viewAdapter = RecyclerViewAdapter(eventList.size, eventList)
+                        recyclerView.adapter = viewAdapter
+                        binding.hideHistorical.text = "Hide Past Events"
+                        clicked = 0
+                    }
+                }
+
             }
-            recyclerView.adapter = viewAdapter
 
         }
 
@@ -246,54 +294,54 @@ class ForYouFragment : Fragment() {
 
 
 
-        var clicked = 0;
-
-        binding.hideHistorical.setOnClickListener {
-            var eventListFrequency: MutableList<String> = mutableListOf<String>()
-
-            for(event in liveEventList) {
-                eventListFrequency.add(event.eventId)
-            }
-            val comparator = compareByDescending<Map.Entry<String, Int>> { it.value }
-                .thenBy { it.key }
-            var eventIDSorted = eventListFrequency.groupingBy { it }.eachCount().entries
-                .sortedWith(comparator).map { it.key }
-
-
-            if (clicked == 0) {
-                var eventListSorted: MutableList<Event> = mutableListOf<Event>()
-                for(id in eventIDSorted){
-                    for(event in liveEventList){
-                        if(event.eventId.equals(id) && LocalDate.parse(event.startRaw.substring(0, 10)) > LocalDate.now()){
-                            eventListSorted.add(event)
-                            break
-                        }
-                    }
-                }
-                eventListSorted.sortBy { it.startRaw }
-
-                viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
-                recyclerView.adapter = viewAdapter
-                clicked = 1;
-                binding.hideHistorical.text = "Show All Events"
-            }
-            else if (clicked == 1) {
-                var eventListSorted: MutableList<Event> = mutableListOf<Event>()
-                for(id in eventIDSorted){
-                    for(event in liveEventList){
-                        if(event.eventId.equals(id)){
-                            eventListSorted.add(event)
-                            break
-                        }
-                    }
-                }
-                eventListSorted.sortBy { it.startRaw }
-                viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
-                recyclerView.adapter = viewAdapter
-                clicked = 0;
-                binding.hideHistorical.text = "Hide Past Events"
-            }
-        }
+//        var clicked = 0;
+//
+//        binding.hideHistorical.setOnClickListener {
+//            var eventListFrequency: MutableList<String> = mutableListOf<String>()
+//
+//            for(event in liveEventList) {
+//                eventListFrequency.add(event.eventId)
+//            }
+//            val comparator = compareByDescending<Map.Entry<String, Int>> { it.value }
+//                .thenBy { it.key }
+//            var eventIDSorted = eventListFrequency.groupingBy { it }.eachCount().entries
+//                .sortedWith(comparator).map { it.key }
+//
+//
+//            if (clicked == 0) {
+//                var eventListSorted: MutableList<Event> = mutableListOf<Event>()
+//                for(id in eventIDSorted){
+//                    for(event in liveEventList){
+//                        if(event.eventId.equals(id) && LocalDate.parse(event.startRaw.substring(0, 10)) > LocalDate.now()){
+//                            eventListSorted.add(event)
+//                            break
+//                        }
+//                    }
+//                }
+//                eventListSorted.sortBy { it.startRaw }
+//
+//                viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
+//                recyclerView.adapter = viewAdapter
+//                clicked = 1;
+//                binding.hideHistorical.text = "Show All Events"
+//            }
+//            else if (clicked == 1) {
+//                var eventListSorted: MutableList<Event> = mutableListOf<Event>()
+//                for(id in eventIDSorted){
+//                    for(event in liveEventList){
+//                        if(event.eventId.equals(id)){
+//                            eventListSorted.add(event)
+//                            break
+//                        }
+//                    }
+//                }
+//                eventListSorted.sortBy { it.startRaw }
+//                viewAdapter = RecyclerViewAdapter(eventListSorted.size, eventListSorted)
+//                recyclerView.adapter = viewAdapter
+//                clicked = 0;
+//                binding.hideHistorical.text = "Hide Past Events"
+//            }
+//        }
 
         return view
     }

@@ -117,6 +117,12 @@ class EventFragment : Fragment() {
         binding.navigation.settingsBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_eventFragment_to_settingsFragment)
         }
+
+        // FIND THIS
+        binding.notifyButton.setOnClickListener {
+            Toast.makeText(activity, "Reminder set.", Toast.LENGTH_SHORT).show()
+        }
+
         if (user != null) {
             binding.addToCalendarButton.setOnClickListener {
                 addToCalendar(user)
