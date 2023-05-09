@@ -12,6 +12,6 @@ Currently, the sources to discover on-campus events are either limited or ineffi
 ![](https://imgur.com/KrIzOuM.png)
 
 ## Screenshots
-<img src="https://imgur.com/6amalj4.png" width="300" />&nbsp;<img src="https://imgur.com/PZPMHsU.png" width="300" />&nbsp;<img src="https://imgur.com/kwivqSD.png" width="300" />
+<img src="https://imgur.com/6amalj4.png" width="200" />&nbsp;<img src="https://imgur.com/PZPMHsU.png" width="200" />&nbsp;<img src="https://imgur.com/kwivqSD.png" width="200" />
 
-<img src="https://imgur.com/9pixc6h.png" width="300" />&nbsp;<img src="https://imgur.com/D7sSPl8.png" width="300" />&nbsp;<img src="https://imgur.com/Xen51XS.png" width="300" />
+<img src="https://imgur.com/9pixc6h.png" width="200" />&nbsp;<img src="https://imgur.com/D7sSPl8.png" width="200" />&nbsp;<img src="https://imgur.com/Xen51XS.png" width="200" />
