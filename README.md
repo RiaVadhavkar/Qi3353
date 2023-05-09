@@ -1,4 +1,4 @@
-# Qi3353
+# Qi3353 (pronounced: cheese)
 
 Currently, the sources to discover on-campus events are either limited or inefficient. The primary way to discover events for Virginia Tech students is GobblerConnect, however many students find it a hassle to use and some are also unaware of the site itself. This motivated us to create a mobile Android application, **Qi3353 (pronounced: cheese)**, that offers students a platform where they can find on-campus events with ease. The app acts as a central place for users to look for details about a particular event, such as its time and location, the organization’s name, and any other information about the event. We accomplish this by aggregating organizational events from other sources and display them on one centralized platform.
 
